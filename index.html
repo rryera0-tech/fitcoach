@@ -10,10 +10,8 @@
   <meta name="theme-color" content="#0a0f0d" />
   <title>FitCoach IA</title>
 
-  <!-- Apple touch icon (inline SVG) -->
-  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj4KICA8cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjQwIiBmaWxsPSIjMGEwZjBkIi8+CiAgPHJlY3QgeD0iMjAiIHk9Ijg4IiB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iIzM5ZTA3YSIvPgogIDxyZWN0IHg9IjE2IiB5PSI3MiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjQ4IiByeD0iNiIgZmlsbD0iIzM5ZTA3YSIvPgogIDxyZWN0IHg9IjE1MiIgeT0iNzIiIHdpZHRoPSIyNCIgaGVpZ2h0PSI0OCIgcng9IjYiIGZpbGw9IiMzOWUwN2EiLz4KICA8cmVjdCB4PSI4IiB5PSI4MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjMyIiByeD0iNSIgZmlsbD0iIzdlZmZhYSIvPgogIDxyZWN0IHg9IjE2OCIgeT0iODAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIzMiIgcng9IjUiIGZpbGw9IiM3ZWZmYWEiLz4KPC9zdmc+" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj4KICA8cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjQwIiBmaWxsPSIjMGEwZjBkIi8+CiAgPHJlY3QgeD0iMjAiIHk9Ijg4IiB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iIzM5ZTA3YSIvPgogIDxyZWN0IHg9IjE2IiB5PSI3MiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjQ4IiByeD0iNiIgZmlsbD0iIzM5ZTA3YSIvPgogIDxyZWN0IHg9IjE1MiIgeT0iNzIiIHdpZHRoPSIyNCIgaGVpZ2h0PSI0OCIgcng9IjYiIGZpbGw9IiMzOWUwN2EiLz4KICA8cmVjdCB4PSI4IiB5PSI4MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjMyIiByeD0iI1IgdmlsbD0iIzdlZmZhYSIvPgogIDxyZWN0IHg9IjE2OCIgeT0iODAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIzMiIgcng9IjUiIGZpbGw9IiM3ZWZmYWEiLz4KPC9zdmc+" />
 
-  <!-- PWA Manifest inline -->
   <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22FitCoach%20IA%22%2C%22short_name%22%3A%22FitCoach%22%2C%22description%22%3A%22Tu%20entrenador%20personal%20inteligente%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230a0f0d%22%2C%22theme_color%22%3A%22%230a0f0d%22%2C%22orientation%22%3A%22portrait%22%7D" />
 
   <style>
@@ -71,7 +69,6 @@
 
   <div id="root"></div>
 
-  <!-- CDN de React y Babel -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -158,7 +155,7 @@
       const calMeta = form.objetivo === "perder" ? (bmr() - 300) : form.objetivo === "ganar" ? (bmr() + 300) : bmr();
 
       return (
-        <div class="grid-two">
+        <div className="grid-two">
           <Card>
             <h3 style={{ color: COLORS.accent, marginBottom: 14 }}>👤 Tus Datos Físicos</h3>
             <label style={{ fontSize: 12, color: COLORS.muted }}>Configurar tu Gemini API Key (Opcional - Gratis)</label>
@@ -263,8 +260,7 @@
             });
 
             const resData = await response.json();
-            const txt = resData.candidates[0].content.parts[0].text.trim().replace(/```json/g, "").replace(/
-```/g, "");
+            const txt = resData.candidates[0].content.parts[0].text.trim().replace(/```json/g, "").replace(/```/g, "");
             const parsedFood = JSON.parse(txt);
 
             addFoodDirect({
@@ -287,13 +283,13 @@
       };
 
       return (
-        <div class="grid-two">
+        <div className="grid-two">
           <Card>
             <h3 style={{ color: COLORS.accent, marginBottom: 12 }}>📸 Añadir Comida por Foto</h3>
             <p style={{ fontSize: 13, color: COLORS.muted, marginBottom: 12 }}>Toma una foto a tu plato o súbela para que la Inteligencia Artificial estime sus macros de forma inmediata.</p>
             
-            <input type="file" accept="image/*" capture="environment" ref={fileInputRef} onChange={handlePhotoUpload} class="hidden" />
-            <Btn onClick="{()"> fileInputRef.current.click()} variant="ghost" disabled={loadingPhoto}>
+            <input type="file" accept="image/*" capture="environment" ref={fileInputRef} onChange={handlePhotoUpload} className="hidden" />
+            <Btn onClick={() => fileInputRef.current.click()} variant="ghost" disabled={loadingPhoto}>
               {loadingPhoto ? "🔄 Analizando plato con IA..." : "📷 Tomar Foto / Subir Imagen"}
             </Btn>
 
@@ -315,7 +311,7 @@
               <div style={{ marginTop: 12, background: "#111814", padding: 12, borderRadius: 8 }}>
                 <p style={{ fontWeight: "bold" }}>Ajustar gramos para {selected.name}:</p>
                 <input type="number" value={grams} onChange={e => setGrams(parseInt(e.target.value) || 100)} style={{ marginTop: 6 }} />
-                <Btn onClick="{()"> addFoodDirect({
+                <Btn onClick={() => addFoodDirect({
                   name: selected.name,
                   cal: Math.round((selected.cal * grams) / 100),
                   prot: Math.round((selected.prot * grams) / 100),
@@ -330,7 +326,7 @@
 
           <Card>
             <h3 style={{ color: COLORS.accent, marginBottom: 12 }}>📋 Consumo del Día</h3>
-            <ProgressBar value="{totalCal}" max="{meta}" label="Calorías Totales Consumidas" color="{COLORS.gold}"/>
+            <ProgressBar value={totalCal} max={meta} label="Calorías Totales Consumidas" color={COLORS.gold}/>
             
             <div style={{ marginTop: 16, maxHeight: "250px", overflowY: "auto" }}>
               {log.length === 0 ? (
@@ -365,14 +361,13 @@
         if (isActive && seconds > 0) {
           interval = setInterval(() => setSeconds(seconds => seconds - 1), 1000);
         } else if (isActive && seconds === 0) {
-          // Alternar entre Trabajo y Descanso de forma gratuita
           if (!isRest) {
             setIsRest(true);
-            setSeconds(30); // 30 segundos de descanso automático
+            setSeconds(30);
             alert("💪 ¡Tiempo de Serie Terminado! Momento de descansar.");
           } else {
             setIsRest(false);
-            setSeconds(60); // 60 segundos de trabajo de nuevo
+            setSeconds(60);
             setRound(r => r + 1);
             alert("⚡ ¡Descanso Finalizado! A darle duro a la siguiente serie.");
           }
@@ -390,7 +385,7 @@
       };
 
       return (
-        <Card style="{{" textAlign: "center", maxWidth: "400px", margin: "0 auto" }}>
+        <Card style={{ textAlign: "center", maxWidth: "400px", margin: "0 auto" }}>
           <h3 style={{ color: COLORS.accent }}>⏱️ Temporizador de Series</h3>
           <p style={{ color: COLORS.muted, fontSize: 13, marginBottom: 16 }}>Controla tus tiempos de ejercicio e intervalos</p>
           
@@ -401,8 +396,8 @@
           </div>
 
           <div style={{ display: "flex", gap: 10 }}>
-            <Btn onClick="{toggle}">{isActive ? "⏸️ Pausar" : "▶️ Iniciar Serie"}</Btn>
-            <Btn onClick="{reset}" variant="ghost">🔄 Reiniciar</Btn>
+            <Btn onClick={toggle}>{isActive ? "⏸️ Pausar" : "▶️ Iniciar Serie"}</Btn>
+            <Btn onClick={reset} variant="ghost">🔄 Reiniciar</Btn>
           </div>
         </Card>
       );
@@ -412,7 +407,6 @@
     // SECCIÓN: RECORDATORIOS DE HÁBITOS Y AGUA
     // ═══════════════════════════════════════════════════════════════════════════════
     const RemindersSection = () => {
-      // Estado diario de hábitos persistido en localStorage
       const [habits, setHabits] = usePersist("fc_habits", [
         { id: "water", text: "💧 Beber 2.5 Litros de Agua", done: false },
         { id: "train", text: "🏋️‍♂️ Completar Entrenamiento", done: false },
@@ -425,7 +419,7 @@
       };
 
       return (
-        <div class="grid-two">
+        <div className="grid-two">
           <Card>
             <h3 style={{ color: COLORS.accent, marginBottom: 8 }}>🔔 Checklist de Hábitos Diarios</h3>
             <p style={{ color: COLORS.muted, fontSize: 13, marginBottom: 16 }}>Marca las tareas clave a medida que las completes durante el día.</p>
@@ -459,40 +453,39 @@
     // ═══════════════════════════════════════════════════════════════════════════════
     const App = () => {
       const [tab, setTab] = usePersist("fc_tab", "calories");
-      const [profile, setProfile] = usePersist("fc_profile", { nombre: "", peso: 70, altura: 175, edad: 30, sexo: "hombre", actividad: "moderado", objetivo: "mantener", apiKey: "" });
+      const [profile, setProfile] = usePersist("fc_profile", { nombre: "", peso: 70, altura: 175, edad: 30, sexo: "hombre", actividad: "moderado", objective: "mantener", apiKey: "" });
 
       useEffect(() => {
-        // Quitar la pantalla de carga (Splash)
         const splash = document.getElementById("splash");
         if (splash) splash.classList.add("hide");
       }, []);
 
       return (
-        <div class="app-container">
-          <div class="header">
+        <div className="app-container">
+          <div className="header">
             <h2 style={{ fontSize: "20px", fontWeight: "900" }}>Fit<span style={{ color: COLORS.accent }}>Coach</span> IA</h2>
             <div style={{ fontSize: "12px", background: COLORS.accentDim, color: COLORS.accent, padding: "4px 8px", borderRadius: 6, fontWeight: "bold" }}>PRO GRATIS</div>
           </div>
 
-          <div class="content">
-            {tab === "profile" && <ProfileSection profile="{profile}" setProfile="{setProfile}"/>}
-            {tab === "calories" && <CaloriesSection profile="{profile}"/>}
+          <div className="content">
+            {tab === "profile" && <ProfileSection profile={profile} setProfile={setProfile}/>}
+            {tab === "calories" && <CaloriesSection profile={profile}/>}
             {tab === "timer" && <TimerSection/>}
             {tab === "reminders" && <RemindersSection/>}
           </div>
 
-          <div class="nav-bar">
-            <button class={`nav-item ${tab === 'calories' ? 'active' : ''}`} onClick={() => setTab("calories")}>
-              <span class="nav-icon">🥗</span><span>Calorías</span>
+          <div className="nav-bar">
+            <button className={`nav-item ${tab === 'calories' ? 'active' : ''}`} onClick={() => setTab("calories")}>
+              <span className="nav-icon">🥗</span><span>Calorías</span>
             </button>
-            <button class={`nav-item ${tab === 'timer' ? 'active' : ''}`} onClick={() => setTab("timer")}>
-              <span class="nav-icon">⏱️</span><span>Timer</span>
+            <button className={`nav-item ${tab === 'timer' ? 'active' : ''}`} onClick={() => setTab("timer")}>
+              <span className="nav-icon">⏱️</span><span>Timer</span>
             </button>
-            <button class={`nav-item ${tab === 'reminders' ? 'active' : ''}`} onClick={() => setTab("reminders")}>
-              <span class="nav-icon">🔔</span><span>Hábitos</span>
+            <button className={`nav-item ${tab === 'reminders' ? 'active' : ''}`} onClick={() => setTab("reminders")}>
+              <span className="nav-icon">🔔</span><span>Hábitos</span>
             </button>
-            <button class={`nav-item ${tab === 'profile' ? 'active' : ''}`} onClick={() => setTab("profile")}>
-              <span class="nav-icon">👤</span><span>Perfil</span>
+            <button className={`nav-item ${tab === 'profile' ? 'active' : ''}`} onClick={() => setTab("profile")}>
+              <span className="nav-icon">👤</span><span>Perfil</span>
             </button>
           </div>
         </div>

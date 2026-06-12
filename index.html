@@ -10,13 +10,13 @@
   <meta name="theme-color" content="#0a0f0d" />
   <title>FitCoach IA</title>
 
-  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj4KICA8cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjQwIiBmaWxsPSIjMGEwZjBkIi8+CiAgPHJlY3QgeD0iMjAiIHk9Ijg4IiB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iIzM5ZTA3YSIvPgogIDxyZWN0IHg9IjE2IiB5PSI3MiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjQ4IiByeD0iNiIgZmlsbD0iIzM5ZTA3YSIvPgogIDxyZWN0IHg9IjE1MiIgeT0iNzIiIHdpZHRoPSIyNCIgaGVpZ2h0PSI0OCIgcng9IjYiIGZpbGw9IiMzOWUwN2EiLz4KICA8cmVjdCB4PSI4IiB5PSI4MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjMyIiByeD0iI1IgdmlsbD0iIzdlZmZhYSIvPgogIDxyZWN0IHg9IjE2OCIgeT0iODAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIzMiIgcng9IjUiIGZpbGw9IiM3ZWZmYWEiLz4KPC9zdmc+" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj4KICA8cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjQwIiBmaWxsPSIjMGEwZjBkIi8+CiAgPHJlY3QgeD0iMjAiIHk9Ijg4IiB3aWR0aD0iMTUyIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iIzM5ZTA3YSIvPgogIDxyZWN0IHg9IjE2IiB5PSI3MiIgd2lkdGg9IjI0IiBoZWlnaHQ9Ijg0IiByeD0iNiIgZmlsbD0iIzM5ZTA3YSIvPgogIDxyZWN0IHg9IjE1MiIgeT0iNzIiIHdpZHRoPSIyNCIgaGVpZ2h0PSI0OCIgcng9IjYiIGZpbGw=\#MzOWUwN2EiLz4KICA8cmVjdCB4PSI4IiB5PSI4MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjMyIiByeD0iNSIgZmlsbD0iIzdlZmZhYSIvPgogIDxyZWN0IHg9IjE2OCIgeT0iODAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIzMiIgcng9IjUiIGZpbGw9IiM3ZWZmYWEiLz4KPC9zdmc+" />
 
   <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22FitCoach%20IA%22%2C%22short_name%22%3A%22FitCoach%22%2C%22description%22%3A%22Tu%20entrenador%20personal%20inteligente%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230a0f0d%22%2C%22theme_color%22%3A%22%230a0f0d%22%2C%22orientation%22%3A%22portrait%22%7D" />
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html, body, #root { height: 100%; background: #0a0f0d; color: #e8f5ec; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    html, body, #root { height: 100%; background: #0a0f0d; color: #e8f5ec; font-family: -apple-system, 'DM Sans', sans-serif; }
     body { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); overflow-x: hidden; }
     
     /* Splash screen */
@@ -31,35 +31,35 @@
     .splash-title span { color: #39e07a; }
     .splash-sub { font-size: 14px; color: #5a7a62; margin-top: 8px; }
     .splash-bar { width: 160px; height: 3px; background: #1a2a1e; border-radius: 99px; margin-top: 40px; overflow: hidden; }
-    .splash-progress { height: 100%; background: linear-gradient(90deg, #39e07a, #7effaa); border-radius: 99px; animation: load 1s ease-in-out forwards; }
-    
+    .splash-progress { height: 100%; background: linear-gradient(90deg, #39e07a, #7effaa); border-radius: 99px; animation: load 1.8s ease-in-out forwards; }
     @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
     @keyframes load { 0%{width:0%} 100%{width:100%} }
-
-    /* Layout general */
-    .app-container { display: flex; flex-direction: column; min-height: 100vh; max-width: 600px; margin: 0 auto; background: #0a0f0d; padding-bottom: 80px; }
-    .header { padding: 20px; border-bottom: 1px solid #161e18; display: flex; justify-content: space-between; align-items: center; }
-    .content { padding: 16px; flex: 1; }
     
-    /* Navigation */
-    .nav-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 600px; background: #111814; border-top: 1px solid #1e2e22; display: flex; justify-content: space-around; padding: 10px 0 calc(10px + env(safe-area-inset-bottom)); z-index: 100; }
-    .nav-item { background: none; border: none; color: #5a7a62; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; cursor: pointer; width: 20%; }
-    .nav-item.active { color: #39e07a; }
-    .nav-icon { font-size: 20px; }
-
-    /* Grid layout para responsive de escritorio/móvil */
-    .grid-two { display: grid; grid-template-columns: 1fr; gap: 16px; }
-    @media (min-width: 600px) { .grid-two { grid-template-columns: 1fr 1fr; } }
-
-    /* Inputs estilizados */
-    input, select, textarea { width: 100%; padding: 12px; background: #1a2a1e; border: 1px solid #2a3e2e; border-radius: 8px; color: #e8f5ec; font-size: 14px; margin-bottom: 12px; }
-    input:focus, select:focus { border-color: #39e07a; outline: none; }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #2a3e2e; border-radius: 99px; }
     
-    .hidden { display: none; }
+    input, select, button, textarea {
+      -webkit-appearance: none; appearance: none;
+      font-family: -apple-system, 'DM Sans', sans-serif;
+    }
+    .bottom-safe { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+    
+    /* Layout estructurado */
+    .app-container { max-width: 1200px; margin: 0 auto; padding: 20px; padding-bottom: 100px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid #1e2e22; padding-bottom: 14px; }
+    .header-title { font-size: 24px; font-weight: 900; }
+    .header-title span { color: #39e07a; }
+    
+    /* Navigation Bar */
+    .nav-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #111814; border-top: 1px solid #1e2e22; display: flex; justify-content: space-around; padding: 10px 0; z-index: 1000; }
+    .nav-item { display: flex; flex-direction: column; align-items: center; background: none; border: none; color: #5a7a62; font-size: 11px; cursor: pointer; transition: color 0.2s; }
+    .nav-item.active { color: #39e07a; font-weight: bold; }
+    .nav-icon { font-size: 20px; margin-bottom: 4px; }
   </style>
 </head>
 <body>
-
   <div id="splash">
     <div class="splash-icon">💪</div>
     <div class="splash-title">Fit<span>Coach</span> IA</div>
@@ -74,25 +74,17 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <script type="text/babel">
-    const { useState, useEffect, useRef } = React;
+    const { useState, useRef, useEffect } = React;
 
-    // Colores globales
-    const COLORS = {
-      bg: "#0a0f0d", surface: "#111814", card: "#161e18",
-      accent: "#39e07a", accentDim: "#1a4a2a", text: "#e8f5ec",
-      muted: "#5a7a62", danger: "#e05a39", gold: "#f0c040"
-    };
+    // Ocultar splash al montar React
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const s = document.getElementById('splash');
+        if(s) s.classList.add('hide');
+      }, 500);
+    });
 
-    // Alimentos Base precargados
-    const FOODS = [
-      { name: "Pollo a la plancha", cal: 165, prot: 31, carb: 0, fat: 3.6, unit: "g", cat: "🍗 Proteína" },
-      { name: "Arroz cocido", cal: 130, prot: 2.5, carb: 28, fat: 0.3, unit: "g", cat: "🍚 Carbos" },
-      { name: "Huevo entero", cal: 155, prot: 13, carb: 1, fat: 11, unit: "g", cat: "🥚 Huevos" },
-      { name: "Aguacate", cal: 160, prot: 2, carb: 9, fat: 15, unit: "g", cat: "🥑 Grasa sana" },
-      { name: "Avena", cal: 389, prot: 17, carb: 66, fat: 7, unit: "g", cat: "🍚 Carbos" }
-    ];
-
-    // --- HOOK DE PERSISTENCIA ---
+    // ── Persistencia automática en localStorage ───────────────────────────────────
     function usePersist(key, defaultValue) {
       const [state, setState] = useState(() => {
         try {
@@ -105,39 +97,126 @@
       }, [key, state]);
       return [state, setState];
     }
-
     function todayKey() { return new Date().toISOString().split("T")[0]; }
 
-    // --- COMPONENTES INTERFAZ BASE ---
-    const Card = ({ children, style = {} }) => (
-      <div style={{ background: COLORS.card, borderRadius: 16, padding: "20px", border: "1px solid #1e2e22", marginBottom: "16px", ...style }}>{children}</div>
+    // ── Palette & config ──────────────────────────────────────────────────────────
+    const COLORS = {
+      bg: "#0a0f0d",
+      surface: "#111814",
+      card: "#161e18",
+      accent: "#39e07a",
+      accentDim: "#1a4a2a",
+      accentGlow: "rgba(57,224,122,0.15)",
+      text: "#e8f5ec",
+      muted: "#5a7a62",
+      danger: "#e05a39",
+      gold: "#f0c040",
+    };
+
+    // ── Base de alimentos ampliada (calorías por 100g/ml, proteína g, carbos g, grasa g) ──
+    const FOODS = [
+      { name: "Pollo a la plancha", cal: 165, prot: 31, carb: 0,   fat: 3.6, unit: "g", cat: "🍗 Proteína" },
+      { name: "Pechuga de pavo", cal: 135, prot: 29, carb: 0,   fat: 1.5, unit: "g", cat: "🍗 Proteína" },
+      { name: "Salmón al horno",  cal: 208, prot: 25, carb: 0,   fat: 12,  unit: "g", cat: "🐟 Pescado" },
+      { name: "Atún en lata",     cal: 116, prot: 26, carb: 0,   fat: 1,   unit: "g", cat: "🐟 Pescado" },
+      { name: "Merluza al vapor", cal: 82,  prot: 18, carb: 0,   fat: 1,   unit: "g", cat: "🐟 Pescado" },
+      { name: "Sardinas en aceite",cal:208, prot: 24, carb: 0,   fat: 13,  unit: "g", cat: "🐟 Pescado" },
+      { name: "Huevo entero",     cal: 155, prot: 13, carb: 1,   fat: 11,  unit: "g", cat: "🥚 Huevos" },
+      { name: "Clara de huevo",   cal: 52,  prot: 11, carb: 1,   fat: 0,   unit: "g", cat: "🥚 Huevos" },
+      { name: "Ternera magra",    cal: 150, prot: 26, carb: 0,   fat: 5,   unit: "g", cat: "🍗 Proteína" },
+      { name: "Cerdo lomo",       cal: 143, prot: 22, carb: 0,   fat: 6,   unit: "g", cat: "🍗 Proteína" },
+      { name: "Leche entera",     cal: 61,  prot: 3,  carb: 5,   fat: 3.5, unit: "ml", cat: "🥛 Lácteos" },
+      { name: "Leche desnatada",  cal: 35,  prot: 3.5,carb: 5,   fat: 0.2, unit: "ml", cat: "🥛 Lácteos" },
+      { name: "Yogur natural",    cal: 59,  prot: 3.5,carb: 4,   fat: 3,   unit: "g", cat: "🥛 Lácteos" },
+      { name: "Yogur griego",     cal: 97,  prot: 9,  carb: 4,   fat: 5,   unit: "g", cat: "🥛 Lácteos" },
+      { name: "Queso fresco",     cal: 98,  prot: 12, carb: 3,   fat: 4,   unit: "g", cat: "🥛 Lácteos" },
+      { name: "Queso manchego",   cal: 392, prot: 25, carb: 0,   fat: 32,  unit: "g", cat: "🥛 Lácteos" },
+      { name: "Requesón",         cal: 74,  prot: 9,  carb: 4,   fat: 2,   unit: "g", cat: "🥛 Lácteos" },
+      { name: "Arroz cocido",     cal: 130, prot: 2.5,carb: 28, fat: 0.3, unit: "g", cat: "🍚 Carbos" },
+      { name: "Arroz integral cocido",cal:124,prot:2.5,carb:26,fat:0.9,  unit: "g", cat: "🍚 Carbos" },
+      { name: "Pasta cocida",     cal: 158, prot: 5,  carb: 31, fat: 1,   unit: "g", cat: "🍚 Carbos" },
+      { name: "Pan integral",     cal: 247, prot: 9,  carb: 41, fat: 3,   unit: "g", cat: "🍞 Pan" },
+      { name: "Pan blanco",       cal: 265, prot: 8,  carb: 50, fat: 2,   unit: "g", cat: "🍞 Pan" },
+      { name: "Avena",            cal: 389, prot: 17, carb: 66, fat: 7,   unit: "g", cat: "🍚 Carbos" },
+      { name: "Patata cocida",    cal: 87,  prot: 2,  carb: 20, fat: 0.1, unit: "g", cat: "🍚 Carbos" },
+      { name: "Boniato cocido",   cal: 90,  prot: 2,  carb: 21, fat: 0.1, unit: "g", cat: "🍚 Carbos" },
+      { name: "Quinoa cocida",    cal: 120, prot: 4,  carb: 22, fat: 2,   unit: "g", cat: "🍚 Carbos" },
+      { name: "Plátano",          cal: 89,  prot: 1,  carb: 23, fat: 0.3, unit: "g", cat: "🍎 Fruta" },
+      { name: "Manzana",          cal: 52,  prot: 0.3,carb: 14, fat: 0.2, unit: "g", cat: "🍎 Fruta" },
+      { name: "Naranja",          cal: 47,  prot: 0.9,carb: 12, fat: 0.1, unit: "g", cat: "🍎 Fruta" },
+      { name: "Fresas",           cal: 32,  prot: 0.7,carb: 8,  fat: 0.3, unit: "g", cat: "🍎 Fruta" },
+      { name: "Arándanos",        cal: 57,  prot: 0.7,carb: 14, fat: 0.3, unit: "g", cat: "🍎 Fruta" },
+      { name: "Uvas",             cal: 69,  prot: 0.7,carb: 18, fat: 0.2, unit: "g", cat: "🍎 Fruta" },
+      { name: "Pera",             cal: 57,  prot: 0.4,carb: 15, fat: 0.1, unit: "g", cat: "🍎 Fruta" },
+      { name: "Sandía",           cal: 30,  prot: 0.6,carb: 8,  fat: 0.2, unit: "g", cat: "🍎 Fruta" },
+      { name: "Brócoli",          cal: 34,  prot: 2.8,carb: 7,  fat: 0.4, unit: "g", cat: "🥦 Verdura" },
+      { name: "Tomate",           cal: 18,  prot: 0.9,carb: 4,  fat: 0.2, unit: "g", cat: "🥦 Verdura" },
+      { name: "Espinacas",        cal: 23,  prot: 2.9,carb: 3.6,fat: 0.4, unit: "g", cat: "🥦 Verdura" },
+      { name: "Lechuga",          cal: 15,  prot: 1.4,carb: 2.9,fat: 0.2, unit: "g", cat: "🥦 Verdura" },
+      { name: "Pepino",           cal: 16,  prot: 0.7,carb: 4,  fat: 0.1, unit: "g", cat: "🥦 Verdura" },
+      { name: "Zanahoria",        cal: 41,  prot: 0.9,carb: 10, fat: 0.2, unit: "g", cat: "🥦 Verdura" },
+      { name: "Calabacín",        cal: 17,  prot: 1.2,carb: 3.1,fat: 0.3, unit: "g", cat: "🥦 Verdura" },
+      { name: "Pimiento rojo",    cal: 31,  prot: 1,  carb: 6,  fat: 0.3, unit: "g", cat: "🥦 Verdura" },
+      { name: "Lentejas cocidas", cal: 116, prot: 9,  carb: 20, fat: 0.4, unit: "g", cat: "🫘 Legumbre" },
+      { name: "Garbanzos cocidos",cal: 164, prot: 9,  carb: 27, fat: 2.6, unit: "g", cat: "🫘 Legumbre" },
+      { name: "Alubias cocidas",  cal: 127, prot: 8,  carb: 23, fat: 0.5, unit: "g", cat: "🫘 Legumbre" },
+      { name: "Edamame",          cal: 122, prot: 11, carb: 10, fat: 5,   unit: "g", cat: "🫘 Legumbre" },
+      { name: "Aguacate",         cal: 160, prot: 2,  carb: 9,  fat: 15,  unit: "g", cat: "🥑 Grasa sana" },
+      { name: "Almendras",        cal: 579, prot: 21, carb: 22, fat: 50,  unit: "g", cat: "🥜 Frutos secos" },
+      { name: "Nueces",           cal: 654, prot: 15, carb: 14, fat: 65,  unit: "g", cat: "🥜 Frutos secos" },
+      { name: "Aceite de oliva",  cal: 884, prot: 0,  carb: 0,  fat: 100, unit: "ml", cat: "🥑 Grasa sana" },
+      { name: "Mantequilla cacahuete",cal:588,prot:25,carb:20,fat:50,    unit: "g", cat: "🥜 Frutos secos" },
+      { name: "Zumo naranja natural",cal:45,prot:0.7,carb:10, fat:0.2,   unit: "ml", cat: "🥤 Bebida" },
+      { name: "Leche vegetal avena",cal:46,prot:1,   carb:9,  fat:1.5,   unit: "ml", cat: "🥤 Bebida" },
+      { name: "Chocolate negro 70%",cal:600,prot:8,  carb:46, fat:43,    unit: "g", cat: "🍫 Otros" },
+      { name: "Miel",             cal: 304, prot: 0.3,carb: 82, fat: 0,   unit: "g", cat: "🍫 Otros" },
+      { name: "Aceite de oliva virgen",cal:884,prot:0,carb:0,fat:100,     unit: "ml", cat: "🥑 Grasa sana" },
+    ];
+
+    // Componentes Reutilizables de Interfaz
+    const ProgressBar = ({ value, max, color = COLORS.accent, label }) => {
+      const pct = Math.min((value / max) * 100, 100);
+      const isOver = value > max;
+      return (
+        <div style={{ marginBottom: 8 }}>
+          {label && <div style={{ display: "flex", justifyBetween: "space-between", display: "flex", justifyContent: "space-between", fontSize: 12, color: COLORS.muted, marginBottom: 4 }}>
+            <span>{label}</span>
+            <span style={{ color: isOver ? COLORS.danger : COLORS.text }}>{value} / {max}</span>
+          </div>}
+          <div style={{ background: "#1a2a1e", borderRadius: 99, height: 8, overflow: "hidden" }}>
+            <div style={{
+              width: `${pct}%`, height: "100%",
+              background: isOver ? `linear-gradient(90deg, ${COLORS.danger}, #ff7a5a)` : `linear-gradient(90deg, ${color}, #7effaa)`,
+              borderRadius: 99,
+              transition: "width 0.6s cubic-bezier(0.34,1.56,0.64,1)",
+              boxShadow: `0 0 8px ${color}88`,
+            }} />
+          </div>
+        </div>
+      );
+    };
+
+    const Card = ({ children, style = {}, glow = false }) => (
+      <div style={{
+        background: COLORS.card, borderRadius: 16, padding: "20px",
+        border: `1px solid ${glow ? COLORS.accent + "44" : "#1e2e22"}`,
+        boxShadow: glow ? `0 0 24px ${COLORS.accentGlow}` : "0 2px 12px rgba(0,0,0,0.3)",
+        ...style,
+      }}>{children}</div>
     );
 
     const Btn = ({ children, onClick, variant = "primary", style = {}, disabled = false }) => {
       const styles = {
         primary: { background: `linear-gradient(135deg, ${COLORS.accent}, #7effaa)`, color: "#0a1a0d", fontWeight: 700 },
         ghost: { background: "transparent", color: COLORS.accent, border: `1px solid ${COLORS.accent}44` },
-        danger: { background: COLORS.danger + "22", color: COLORS.danger, border: `1px solid ${COLORS.danger}44` }
+        danger: { background: COLORS.danger + "22", color: COLORS.danger, border: `1px solid ${COLORS.danger}44` },
       };
       return (
-        <button onClick={onClick} disabled={disabled} style={{ padding: "12px 18px", borderRadius: 10, border: "none", cursor: "pointer", fontSize: "14px", width: "100%", opacity: disabled ? 0.5 : 1, ...styles[variant], ...style }}>
-          {children}
-        </button>
-      );
-    };
-
-    const ProgressBar = ({ value, max, color = COLORS.accent, label }) => {
-      const pct = Math.min((value / max) * 100, 100);
-      return (
-        <div style={{ marginBottom: 12 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: COLORS.muted, marginBottom: 4 }}>
-            <span>{label}</span>
-            <span>{value} / {max}</span>
-          </div>
-          <div style={{ background: "#1a2a1e", borderRadius: 99, height: 8, overflow: "hidden" }}>
-            <div style={{ width: `${pct}%`, height: "100%", background: color, borderRadius: 99, transition: "width 0.4s ease" }} />
-          </div>
-        </div>
+        <button onClick={onClick} disabled={disabled} style={{
+          padding: "10px 18px", borderRadius: 10, border: "none", cursor: disabled ? "not-allowed" : "pointer",
+          fontSize: 14, transition: "all 0.2s", opacity: disabled ? 0.5 : 1,
+          ...styles[variant], ...style,
+        }}>{children}</button>
       );
     };
 
@@ -146,354 +225,542 @@
     // ═══════════════════════════════════════════════════════════════════════════════
     const ProfileSection = ({ profile, setProfile }) => {
       const [form, setForm] = useState(profile);
+      const [saved, setSaved] = useState(false);
+
       const bmr = () => {
-        if (!form.peso || !form.altura || !form.edad) return 2000;
-        const base = form.sexo === "hombre" ? 10 * form.peso + 6.25 * form.altura - 5 * form.edad + 5 : 10 * form.peso + 6.25 * form.altura - 5 * form.edad - 161;
+        if (!form.peso || !form.altura || !form.edad) return null;
+        const base = form.sexo === "hombre"
+          ? 10 * form.peso + 6.25 * form.altura - 5 * form.edad + 5
+          : 10 * form.peso + 6.25 * form.altura - 5 * form.edad - 161;
         const factor = { sedentario: 1.2, ligero: 1.375, moderado: 1.55, activo: 1.725 }[form.actividad] || 1.2;
         return Math.round(base * factor);
       };
-      const calMeta = form.objetivo === "perder" ? (bmr() - 300) : form.objetivo === "ganar" ? (bmr() + 300) : bmr();
+
+      const imc = () => {
+        if (!form.peso || !form.altura) return null;
+        return (form.peso / Math.pow(form.altura / 100, 2)).toFixed(1);
+      };
+
+      const imcLabel = () => {
+        const v = parseFloat(imc());
+        if (v < 18.5) return { t: "Bajo peso", c: "#60a5fa" };
+        if (v < 25) return { t: "Normal ✓", c: COLORS.accent };
+        if (v < 30) return { t: "Sobrepeso", c: COLORS.gold };
+        return { t: "Obesidad", c: COLORS.danger };
+      };
+
+      const save = () => {
+        setProfile(form);
+        setSaved(true);
+        setTimeout(() => setSaved(false), 2000);
+      };
+
+      const resetAll = () => {
+        if (!window.confirm("¿Borrar todos tus datos guardados? Esta acción no se puede deshacer.")) return;
+        localStorage.clear();
+        window.location.reload();
+      };
+
+      const field = (label, key, type = "number", opts = {}) => (
+        <div style={{ marginBottom: 14 }}>
+          <label style={{ display: "block", fontSize: 12, color: COLORS.muted, marginBottom: 4 }}>{label}</label>
+          {opts.options ? (
+            <select value={form[key] || ""} onChange={e => setForm({ ...form, [key]: e.target.value })}
+              style={{ width: "100%", padding: "10px 12px", background: "#1a2a1e", border: `1px solid #2a3e2e`, borderRadius: 8, color: COLORS.text, fontSize: 14 }}>
+              {opts.options.map(o => <option key={o.v} value={o.v}>{o.l}</option>)}
+            </select>
+          ) : (
+            <input type={type} value={form[key] || ""} onChange={e => setForm({ ...form, [key]: type === "number" ? parseFloat(e.target.value) || "" : e.target.value })}
+              placeholder={opts.placeholder || ""}
+              style={{ width: "100%", padding: "10px 12px", background: "#1a2a1e", border: `1px solid #2a3e2e`, borderRadius: 8, color: COLORS.text, fontSize: 14, boxSizing: "border-box" }} />
+          )}
+        </div>
+      );
 
       return (
-        <div className="grid-two">
-          <Card>
-            <h3 style={{ color: COLORS.accent, marginBottom: 14 }}>👤 Tus Datos Físicos</h3>
-            <label style={{ fontSize: 12, color: COLORS.muted }}>Configurar tu Gemini API Key (Opcional - Gratis)</label>
-            <input type="text" value={form.apiKey || ""} onChange={e => setForm({...form, apiKey: e.target.value})} placeholder="AIzaSy..." />
-            
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          <Card glow>
+            <h3 style={{ color: COLORS.accent, margin: "0 0 16px", fontSize: 16 }}>👤 Tus datos</h3>
+            {field("Nombre", "nombre", "text", { placeholder: "¿Cómo te llamas?" })}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-              <div><label style={{ fontSize: 12, color: COLORS.muted }}>Peso (kg)</label><input type="number" value={form.peso || ""} onChange={e => setForm({...form, peso: parseFloat(e.target.value)})} /></div>
-              <div><label style={{ fontSize: 12, color: COLORS.muted }}>Altura (cm)</label><input type="number" value={form.altura || ""} onChange={e => setForm({...form, altura: parseFloat(e.target.value)})} /></div>
+              <div>{field("Peso (kg)", "peso")}</div>
+              <div>{field("Altura (cm)", "altura")}</div>
+              <div>{field("Edad", "edad")}</div>
+              <div>{field("Sexo", "sexo", "text", { options: [{ v: "hombre", l: "Hombre" }, { v: "mujer", l: "Mujer" }] })}</div>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-              <div><label style={{ fontSize: 12, color: COLORS.muted }}>Edad</label><input type="number" value={form.edad || ""} onChange={e => setForm({...form, edad: parseInt(e.target.value)})} /></div>
-              <div><label style={{ fontSize: 12, color: COLORS.muted }}>Sexo</label>
-                <select value={form.sexo || "hombre"} onChange={e => setForm({...form, sexo: e.target.value})}>
-                  <option value="hombre">Hombre</option>
-                  <option value="mujer">Mujer</option>
-                </select>
-              </div>
-            </div>
-            <label style={{ fontSize: 12, color: COLORS.muted }}>Objetivo</label>
-            <select value={form.objetivo || "mantener"} onChange={e => setForm({...form, objetivo: e.target.value})}>
-              <option value="perder">🔥 Perder Peso</option>
-              <option value="mantener">⚖️ Mantener Línea</option>
-              <option value="ganar">💪 Masa Muscular</option>
-            </select>
-            <Btn onClick={() => setProfile(form)}>Guardar Perfil</Btn>
+            {field("Actividad física", "actividad", "text", {
+              options: [
+                { v: "sedentario", l: "Sedentario (sin ejercicio)" },
+                { v: "ligero", l: "Ligero (1-2 días/semana)" },
+                { v: "moderado", l: "Moderado (3-5 días/semana)" },
+                { v: "activo", l: "Muy activo (6-7 días/semana)" },
+              ]
+            })}
+            {field("Objetivo", "objetivo", "text", {
+              options: [
+                { v: "perder", l: "🔥 Perder peso" },
+                { v: "mantener", l: "⚖️ Mantener peso" },
+                { v: "ganar", l: "💪 Ganar músculo" },
+              ]
+            })}
+            <Btn onClick={save} style={{ width: "100%", marginTop: 4 }}>
+              {saved ? "✅ ¡Guardado!" : "Guardar perfil"}
+            </Btn>
+            <button onClick={resetAll}
+              style={{ width: "100%", marginTop: 8, padding: "8px", background: "none", border: `1px solid ${COLORS.danger}33`, borderRadius: 8, color: COLORS.danger, fontSize: 12, cursor: "pointer", opacity: 0.7 }}>
+              🗑️ Borrar todos mis datos
+            </button>
           </Card>
-          <Card>
-            <h3 style={{ color: COLORS.gold, marginBottom: 14 }}>📊 Diagnóstico Diario</h3>
-            <div style={{ marginBottom: 20 }}>
-              <div style={{ color: COLORS.muted, fontSize: 13 }}>Meta de Consumo Recomendada:</div>
-              <div style={{ fontSize: 32, fontWeight: 900, color: COLORS.accent }}>{calMeta} Kcal</div>
-            </div>
-            <div style={{ color: COLORS.muted, fontSize: 12 }}>
-              * Puedes obtener tu API key de Gemini totalmente gratis buscando "Google AI Studio" en tu navegador para habilitar la lectura de fotos por inteligencia artificial.
-            </div>
-          </Card>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {bmr() && (
+              <Card glow>
+                <div style={{ fontSize: 12, color: COLORS.muted, marginBottom: 6 }}>🔥 Calorías de mantenimiento</div>
+                <div style={{ fontSize: 36, fontWeight: 900, color: COLORS.accent, lineHeight: 1 }}>{bmr()}</div>
+                <div style={{ fontSize: 12, color: COLORS.muted, marginTop: 4 }}>kcal / día</div>
+              </Card>
+            )}
+            {bmr() && (
+              <Card>
+                <div style={{ fontSize: 12, color: COLORS.muted, marginBottom: 6 }}>🎯 Meta calórica para tu objetivo</div>
+                <div style={{ fontSize: 30, fontWeight: 900, color: COLORS.gold }}>
+                  {form.objetivo === "perder" ? bmr() - 300 : form.objetivo === "ganar" ? bmr() + 300 : bmr()}
+                </div>
+                <div style={{ fontSize: 12, color: COLORS.muted, marginTop: 4 }}>kcal / día recomendadas</div>
+              </Card>
+            )}
+            {imc() && (
+              <Card>
+                <div style={{ fontSize: 12, color: COLORS.muted, marginBottom: 6 }}>📊 IMC (Índice de Masa Corporal)</div>
+                <div style={{ fontSize: 36, fontWeight: 900, color: imcLabel().c }}>{imc()}</div>
+                <div style={{ fontSize: 13, color: imcLabel().c, marginTop: 4 }}>{imcLabel().t}</div>
+              </Card>
+            )}
+          </div>
         </div>
       );
     };
 
     // ═══════════════════════════════════════════════════════════════════════════════
-    // SECCIÓN: CALORÍAS E IA DE FOTOS
+    // SECCIÓN: CALORÍAS (Buscador integrado + Reconocimiento de Fotos)
     // ═══════════════════════════════════════════════════════════════════════════════
-    const CaloriesSection = ({ profile }) => {
+    const CaloriesSection = ({ profile, apiKey }) => {
       const [logData, setLogData] = usePersist("fc_food_log", { date: todayKey(), items: [] });
       const log = logData.date === todayKey() ? logData.items : [];
       const setLog = (items) => setLogData({ date: todayKey(), items: typeof items === "function" ? items(log) : items });
 
-      const [search, setSearch] = useState("");
+      const [search, setSearch]     = useState("");
       const [selected, setSelected] = useState(null);
-      const [grams, setGrams] = useState(100);
-      const [meal, setMeal] = useState("Desayuno");
-      const [loadingPhoto, setLoadingPhoto] = useState(false);
+      const [grams, setGrams]       = useState(100);
+      const [meal, setMeal]         = useState("Desayuno");
+      const [catFilter, setCatFilter] = useState("Todos");
+      
+      // Estados para la foto
+      const [imageLoading, setImageLoading] = useState(false);
+      const [photoPreview, setPhotoPreview] = useState(null);
       const fileInputRef = useRef(null);
 
-      // Calcular meta calórica
       const meta = (() => {
         if (!profile.peso || !profile.altura || !profile.edad) return 2000;
         const base = profile.sexo === "hombre" ? 10 * profile.peso + 6.25 * profile.altura - 5 * profile.edad + 5 : 10 * profile.peso + 6.25 * profile.altura - 5 * profile.edad - 161;
-        return profile.objetivo === "perder" ? Math.round(base * 1.3) - 300 : profile.objetivo === "ganar" ? Math.round(base * 1.3) + 300 : Math.round(base * 1.3);
+        const factor = { sedentario: 1.2, ligero: 1.375, moderado: 1.55, activo: 1.725 }[profile.actividad] || 1.2;
+        const bmr = Math.round(base * factor);
+        return profile.objetivo === "perder" ? bmr - 300 : profile.objetivo === "ganar" ? bmr + 300 : bmr;
       })();
 
-      const totalCal = log.reduce((sum, item) => sum + item.cal, 0);
+      const metaProt = profile.peso ? Math.round(profile.peso * (profile.objetivo === "ganar" ? 2.2 : 1.8)) : 150;
+      const metaCarb = Math.round((meta * 0.40) / 4);
+      const metaFat  = Math.round((meta * 0.25) / 9);
 
-      const addFoodDirect = (foodItem) => {
-        setLog([...log, { ...foodItem, id: Date.now(), meal }]);
-        setSelected(null);
-        setSearch("");
+      const totalCal  = Math.round(log.reduce((s, e) => s + e.cal,  0));
+      const totalProt = Math.round(log.reduce((s, e) => s + (e.prot * (e.grams || 100) / 100), 0));
+      const totalCarb = Math.round(log.reduce((s, e) => s + (e.carb * (e.grams || 100) / 100), 0));
+      const totalFat  = Math.round(log.reduce((s, e) => s + (e.fat  * (e.grams || 100) / 100), 0));
+
+      const categories = ["Todos", ...Array.from(new Set(FOODS.map(f => f.cat)))];
+      const filtered = FOODS.filter(f => f.name.toLowerCase().includes(search.toLowerCase()) && (catFilter === "Todos" || f.cat === catFilter));
+
+      const addFood = () => {
+        if (!selected) return;
+        const ratio = grams / 100;
+        setLog([...log, {
+          ...selected, grams,
+          cal:  Math.round(selected.cal  * ratio),
+          prot: selected.prot * ratio,
+          carb: selected.carb * ratio,
+          fat:  selected.fat  * ratio,
+          meal, id: Date.now()
+        }]);
+        setSelected(null); setSearch(""); setGrams(100); setPhotoPreview(null);
       };
 
-      // --- ESCÁNER DE FOTOS CON GEMINI API ---
+      // Función para procesar comida por Foto usando Gemini 1.5 Flash
       const handlePhotoUpload = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
-        if (!profile.apiKey) {
-          alert("Por favor introduce tu Gemini API Key en la pestaña Perfil para usar el escáner de fotos gratis.");
+
+        // Mostrar Preview visual
+        const reader = new FileReader();
+        reader.onloadend = () => setPhotoPreview(reader.result);
+        reader.readAsDataURL(file);
+
+        if (!apiKey) {
+          alert("Por favor introduce tu API Key de Gemini en la pestaña de Configuración.");
           return;
         }
 
-        setLoadingPhoto(true);
+        setImageLoading(true);
+
         try {
-          // Convertir imagen a Base64
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onloadend = async () => {
-            const base64Data = reader.result.split(',')[1];
-            
-            // Llamar a la API Gratuita de Gemini Flash
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${profile.apiKey}`;
-            
-            const response = await fetch(url, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                contents: [{
-                  parts: [
-                    { text: "Analiza esta comida. Devuelve ÚNICAMENTE un objeto JSON válido con este formato exacto, sin código markdown, sin texto extra: {\"name\": \"Nombre del plato estimado\", \"cal\": 350, \"prot\": 25, \"carb\": 30, \"fat\": 10, \"cat\": \"🍛 Plato Foto\"}. Intenta ser lo más preciso posible con los ingredientes visibles." },
-                    { inlineData: { mimeType: file.type, data: base64Data } }
-                  ]
-                }]
-              })
-            });
+          const base64Data = await new Promise((resolve) => {
+            const r = new FileReader();
+            r.onload = () => resolve(r.result.split(',')[1]);
+            r.readAsDataURL(file);
+          });
 
-            const resData = await response.json();
-            const txt = resData.candidates[0].content.parts[0].text.trim().replace(/```json/g, "").replace(/```/g, "");
-            const parsedFood = JSON.parse(txt);
+          const promptVisual = "Analiza detalladamente este plato de comida. Estima el alimento principal o conjunto, calcula los gramos visuales aproximados y devuélveme un objeto JSON exacto, sin textos adicionales ni bloques adicionales, siguiendo esta estructura exacta: {\"name\": \"Nombre estimado del plato\", \"cal\": 150, \"prot\": 12, \"carb\": 20, \"fat\": 5, \"unit\": \"g\", \"cat\": \"📸 Foto\"}. Nota: cal, prot, carb, fat deben ser valores calculados directamente para la porción estimada completa de la foto por cada 100g de base estándar.";
 
-            addFoodDirect({
-              name: parsedFood.name,
-              cal: parseInt(parsedFood.cal) || 0,
-              prot: parseFloat(parsedFood.prot) || 0,
-              carb: parseFloat(parsedFood.carb) || 0,
-              fat: parseFloat(parsedFood.fat) || 0,
-              grams: 100,
-              cat: "📸 Foto Escaneada"
-            });
-            alert(`¡Alimento identificado!: ${parsedFood.name} (${parsedFood.cal} Kcal)`);
-          };
+          const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{
+                parts: [
+                  { text: promptVisual },
+                  { inlineData: { mimeType: file.type, data: base64Data } }
+                ]
+              }]
+            })
+          });
+
+          const resData = await response.json();
+          const txt = resData.candidates[0].content.parts[0].text.trim().replace(/```json/g, "").replace(/```/g, "");
+          const analizado = JSON.parse(txt);
+
+          setSelected(analizado);
+          setSearch(analizado.name);
+          setGrams(100);
+
         } catch (err) {
           console.error(err);
-          alert("Error procesando la imagen. Asegúrate de que la API Key de tu pestaña Perfil es correcta.");
+          alert("Error analizando la imagen. Comprueba tu conexión o API Key.");
         } finally {
-          setLoadingPhoto(false);
+          setImageLoading(false);
         }
       };
 
+      const MacroBar = ({ label, val, meta: mx, color }) => (
+        <div style={{ flex: 1 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: COLORS.muted, marginBottom: 3 }}>
+            <span style={{ fontWeight: 700, color }}>{label}</span>
+            <span>{val}g</span>
+          </div>
+          <div style={{ background: "#1a2a1e", borderRadius: 99, height: 5 }}>
+            <div style={{ width: `${Math.min((val / mx) * 100, 100)}%`, height: "100%", background: color, borderRadius: 99, transition: "width 0.5s ease" }} />
+          </div>
+          <div style={{ fontSize: 10, color: COLORS.muted, marginTop: 2, textAlign: "right" }}>/{mx}g</div>
+        </div>
+      );
+
       return (
-        <div className="grid-two">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <Card glow>
+              <div style={{ display: 'flex', justifyBetween: 'space-between', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                <h3 style={{ color: COLORS.accent, fontSize: 16 }}>🔍 Buscar Alimento o Foto</h3>
+                <input type="file" accept="image/*" ref={fileInputRef} onChange={handlePhotoUpload} style={{ display: 'none' }} />
+                <Btn variant="ghost" onClick={() => fileInputRef.current.click()} style={{ padding: '6px 12px', fontSize: 12 }}>
+                  📷 Escanear Plato
+                </Btn>
+              </div>
+
+              {photoPreview && (
+                <div style={{ textAlign: 'center', marginBottom: 12, background: '#111814', borderRadius: 8, padding: 8 }}>
+                  <img src={photoPreview} style={{ maxHeight: 120, borderRadius: 6, maxWidth: '100%' }} alt="Preview" />
+                  {imageLoading && <div style={{ fontSize: 12, color: COLORS.gold, marginTop: 4 }}>Analizando macronutrientes...</div>}
+                </div>
+              )}
+
+              <input value={search} onChange={e => { setSearch(e.target.value); setSelected(null); }} placeholder="Escribe un alimento... (ej: pollo, avena)"
+                style={{ width: "100%", padding: "10px 12px", background: "#1a2a1e", border: `1px solid #2a3e2e`, borderRadius: 8, color: COLORS.text, fontSize: 14, marginBottom: 8, boxSizing: "border-box" }} />
+
+              <div style={{ display: "flex", gap: 5, flexWrap: "wrap", marginBottom: 10 }}>
+                {categories.slice(0, 8).map(c => (
+                  <button key={c} onClick={() => setCatFilter(c)}
+                    style={{ padding: "3px 9px", borderRadius: 99, border: `1px solid ${catFilter === c ? COLORS.accent : "#2a3e2e"}`, background: catFilter === c ? COLORS.accentDim : "transparent", color: catFilter === c ? COLORS.accent : COLORS.muted, fontSize: 11, cursor: "pointer" }}>
+                    {c}
+                  </button>
+                ))}
+              </div>
+
+              {!selected && (
+                <div style={{ background: "#1a2a1e", borderRadius: 8, maxHeight: 160, overflowY: "auto", border: `1px solid #2a3e2e` }}>
+                  {filtered.slice(0, 8).map(f => (
+                    <div key={f.name} onClick={() => { setSelected(f); setSearch(f.name); }}
+                      style={{ padding: "8px 12px", cursor: "pointer", borderBottom: "1px solid #1e2e22", fontSize: 13, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div>
+                        <span style={{ color: COLORS.text }}>{f.name}</span>
+                        <span style={{ fontSize: 10, color: COLORS.muted, marginLeft: 6 }}>{f.cat}</span>
+                      </div>
+                      <span style={{ color: COLORS.accent, fontWeight: 700, fontSize: 12 }}>{f.cal} kcal</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {selected && (
+                <div style={{ background: COLORS.accentDim, borderRadius: 10, padding: 12, marginBottom: 10, border: `1px solid ${COLORS.accent}33` }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
+                    <div>
+                      <div style={{ color: COLORS.accent, fontWeight: 700, fontSize: 14 }}>{selected.name}</div>
+                      <div style={{ color: COLORS.muted, fontSize: 11 }}>{selected.cat} · por 100{selected.unit || "g"}</div>
+                    </div>
+                    <button onClick={() => { setSelected(null); setSearch(""); setPhotoPreview(null); }} style={{ background: "none", border: "none", color: COLORS.muted, cursor: "pointer", fontSize: 16 }}>✕</button>
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 6, marginBottom: 10 }}>
+                    {[
+                      { l: "Kcal", v: selected.cal, c: COLORS.accent },
+                      { l: "Prot", v: `${Math.round(selected.prot)}g`, c: "#60a5fa" },
+                      { l: "Carbs", v: `${Math.round(selected.carb)}g`, c: COLORS.gold },
+                      { l: "Grasa", v: `${Math.round(selected.fat)}g`, c: "#f97316" },
+                    ].map(x => (
+                      <div key={x.l} style={{ background: "#0f1e12", borderRadius: 6, padding: "6px 4px", textAlign: "center" }}>
+                        <div style={{ fontSize: 14, fontWeight: 900, color: x.c }}>{x.v}</div>
+                        <div style={{ fontSize: 9, color: COLORS.muted }}>{x.l}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 10 }}>
+                <div>
+                  <label style={{ fontSize: 12, color: COLORS.muted, display: "block", marginBottom: 4 }}>Cantidad ({selected?.unit || "g"})</label>
+                  <input type="number" value={grams} onChange={e => setGrams(parseFloat(e.target.value) || 0)}
+                    style={{ width: "100%", padding: "10px 12px", background: "#1a2a1e", border: `1px solid #2a3e2e`, borderRadius: 8, color: COLORS.text, fontSize: 14, boxSizing: "border-box" }} />
+                </div>
+                <div>
+                  <label style={{ fontSize: 12, color: COLORS.muted, display: "block", marginBottom: 4 }}>Comida</label>
+                  <select value={meal} onChange={e => setMeal(e.target.value)}
+                    style={{ width: "100%", padding: "10px 12px", background: "#1a2a1e", border: `1px solid #2a3e2e`, borderRadius: 8, color: COLORS.text, fontSize: 14 }}>
+                    {["Desayuno", "Almuerzo", "Merienda", "Cena"].map(m => <option key={m}>{m}</option>)}
+                  </select>
+                </div>
+              </div>
+              <Btn onClick={addFood} disabled={!selected || imageLoading} style={{ width: "100%" }}>➕ Añadir al diario</Btn>
+            </Card>
+
+            <Card>
+              <h4 style={{ color: COLORS.accent, margin: "0 0 12px", fontSize: 14 }}>📊 Macros del día</h4>
+              <ProgressBar value={totalCal} max={meta} label="Calorías totales" />
+              <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
+                <MacroBar label="Proteína" val={totalProt} meta={metaProt} color="#60a5fa" />
+                <MacroBar label="Carbos"   val={totalCarb} meta={metaCarb} color={COLORS.gold} />
+                <MacroBar label="Grasa"    val={totalFat}  meta={metaFat}  color="#f97316" />
+              </div>
+            </Card>
+          </div>
+
           <Card>
-            <h3 style={{ color: COLORS.accent, marginBottom: 12 }}>📸 Añadir Comida por Foto</h3>
-            <p style={{ fontSize: 13, color: COLORS.muted, marginBottom: 12 }}>Toma una foto a tu plato o súbela para que la Inteligencia Artificial estime sus macros de forma inmediata.</p>
-            
-            <input type="file" accept="image/*" capture="environment" ref={fileInputRef} onChange={handlePhotoUpload} className="hidden" />
-            <Btn onClick={() => fileInputRef.current.click()} variant="ghost" disabled={loadingPhoto}>
-              {loadingPhoto ? "🔄 Analizando plato con IA..." : "📷 Tomar Foto / Subir Imagen"}
-            </Btn>
-
-            <div style={{ margin: "20px 0", borderTop: "1px dashed #2a3e2e" }}></div>
-
-            <h3 style={{ color: COLORS.accent, marginBottom: 12 }}>🔍 O Buscador Manual</h3>
-            <input type="text" placeholder="Buscar alimento de la lista..." value={search} onChange={e => setSearch(e.target.value)} />
-            {search && (
-              <div style={{ background: "#1a2a1e", borderRadius: 8, maxHeight: 150, overflowY: "auto", border: "1px solid #2a3e2e" }}>
-                {FOODS.filter(f => f.name.toLowerCase().includes(search.toLowerCase())).map(f => (
-                  <div key={f.name} onClick={() => { setSelected(f); setSearch(f.name); }} style={{ padding: 10, cursor: "pointer", borderBottom: "1px solid #0a0f0d" }}>
-                    {f.name} - <span style={{ color: COLORS.accent }}>{f.cal} kcal/100g</span>
+            <h3 style={{ color: COLORS.accent, margin: "0 0 14px", fontSize: 16 }}>📋 Diario de hoy</h3>
+            {log.length === 0 ? (
+              <div style={{ color: COLORS.muted, textAlign: "center", padding: "40px 20px", fontSize: 13 }}>
+                <div style={{ fontSize: 36, marginBottom: 8 }}>🍽️</div>
+                Añade alimentos para ver el desglose diario.
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxHeight: 340, overflowY: 'auto' }}>
+                {log.map(item => (
+                  <div key={item.id} style={{ display: 'flex', justifyBetween: 'space-between', justifyContent: 'space-between', alignItems: 'center', background: '#1a2a1e', padding: 10, borderRadius: 8 }}>
+                    <div>
+                      <div style={{ fontSize: 13, fontWeight: 'bold' }}>{item.name}</div>
+                      <div style={{ fontSize: 11, color: COLORS.muted }}>{item.meal} · {item.grams}{item.unit || "g"}</div>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                      <span style={{ fontSize: 13, color: COLORS.accent, fontWeight: 'bold' }}>{item.cal} kcal</span>
+                      <button onClick={() => setLog(log.filter(x => x.id !== item.id))} style={{ background: 'none', border: 'none', color: COLORS.danger, cursor: 'pointer' }}>🗑️</button>
+                    </div>
                   </div>
                 ))}
               </div>
             )}
-
-            {selected && (
-              <div style={{ marginTop: 12, background: "#111814", padding: 12, borderRadius: 8 }}>
-                <p style={{ fontWeight: "bold" }}>Ajustar gramos para {selected.name}:</p>
-                <input type="number" value={grams} onChange={e => setGrams(parseInt(e.target.value) || 100)} style={{ marginTop: 6 }} />
-                <Btn onClick={() => addFoodDirect({
-                  name: selected.name,
-                  cal: Math.round((selected.cal * grams) / 100),
-                  prot: Math.round((selected.prot * grams) / 100),
-                  carb: Math.round((selected.carb * grams) / 100),
-                  fat: Math.round((selected.fat * grams) / 100),
-                  grams: grams,
-                  cat: selected.cat
-                })}>Confirmar e Insertar</Btn>
-              </div>
-            )}
-          </Card>
-
-          <Card>
-            <h3 style={{ color: COLORS.accent, marginBottom: 12 }}>📋 Consumo del Día</h3>
-            <ProgressBar value={totalCal} max={meta} label="Calorías Totales Consumidas" color={COLORS.gold}/>
-            
-            <div style={{ marginTop: 16, maxHeight: "250px", overflowY: "auto" }}>
-              {log.length === 0 ? (
-                <p style={{ color: COLORS.muted, textAlign: "center", padding: 20 }}>No hay alimentos registrados hoy.</p>
-              ) : (
-                log.map((item, index) => (
-                  <div key={index} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid #1a2a1e", fontSize: 13 }}>
-                    <div>
-                      <span style={{ fontWeight: "bold" }}>{item.name}</span> <span style={{ color: COLORS.muted }}>({item.meal})</span>
-                    </div>
-                    <div style={{ color: COLORS.accent, fontWeight: "bold" }}>{item.cal} Kcal</div>
-                  </div>
-                ))
-              )}
-            </div>
           </Card>
         </div>
       );
     };
 
     // ═══════════════════════════════════════════════════════════════════════════════
-    // SECCIÓN: TEMPORIZADOR DE ENTRENAMIENTO
+    // SECCIÓN: ENTRENAMIENTO (¡Formulario de Claude + Gemini Integrado Completo!)
     // ═══════════════════════════════════════════════════════════════════════════════
-    const TimerSection = () => {
-      const [seconds, setSeconds] = useState(60);
-      const [isActive, setIsActive] = useState(false);
-      const [isRest, setIsRest] = useState(false);
-      const [round, setRound] = useState(1);
+    const WorkoutSection = ({ profile, apiKey }) => {
+      const [config, setConfig] = usePersist("fc_workout_config", {
+        fisicas: "Complexión media, sin lesiones",
+        tiempo: "3 días a la semana, 45 min por sesión",
+        lugar: "Gimnasio"
+      });
+      const [plan, setPlan] = usePersist("fc_workout_plan", null);
+      const [loading, setLoading] = useState(false);
 
-      useEffect(() => {
-        let interval = null;
-        if (isActive && seconds > 0) {
-          interval = setInterval(() => setSeconds(seconds => seconds - 1), 1000);
-        } else if (isActive && seconds === 0) {
-          if (!isRest) {
-            setIsRest(true);
-            setSeconds(30);
-            alert("💪 ¡Tiempo de Serie Terminado! Momento de descansar.");
-          } else {
-            setIsRest(false);
-            setSeconds(60);
-            setRound(r => r + 1);
-            alert("⚡ ¡Descanso Finalizado! A darle duro a la siguiente serie.");
-          }
+      const generarPlan = async () => {
+        if (!apiKey) {
+          alert("Por favor añade tu clave API de Gemini en la pestaña Configuración.");
+          return;
         }
-        return () => clearInterval(interval);
-      }, [isActive, seconds, isRest]);
+        setLoading(true);
+        
+        const promptText = `Actúa como un entrenador personal de élite. Genera un plan de entrenamiento semanal estructurado exactamente con estas especificaciones:
+        - Características Físicas: ${config.fisicas} (Edad: ${profile.edad || '32'} años, Peso: ${profile.peso || '75'}kg, Objetivo principal: ${profile.objetivo || 'Ganar músculo'}).
+        - Disponibilidad de Tiempo: ${config.tiempo}.
+        - Lugar de ejecución: ${config.lugar} (Casa o Gimnasio).
 
-      const toggle = () => setIsActive(!isActive);
-      const reset = () => { setIsActive(false); setSeconds(60); setIsRest(false); setRound(1); };
+        Devuelve la respuesta EXCLUSIVAMENTE en un formato JSON estructurado, sin bloques literales adicionales, siguiendo este molde:
+        {
+          "progreso": "Enfoque general basado en tus características y espacio.",
+          "rutina": [
+            { "dia": "Día 1", "enfoque": "Pecho y Brazos", "ejercicios": ["Press Banca - 4x10", "Flexiones intensas - 3x12"] }
+          ]
+        }`;
 
-      const formatTime = (secs) => {
-        const m = Math.floor(secs / 60).toString().padStart(2, '0');
-        const s = (secs % 60).toString().padStart(2, '0');
-        return `${m}:${s}`;
+        try {
+          const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
+          });
+          const resData = await response.json();
+          const txt = resData.candidates[0].content.parts[0].text.trim().replace(/```json/g, "").replace(/```/g, "");
+          const planParseado = JSON.parse(txt);
+          setPlan(planParseado);
+        } catch (err) {
+          console.error(err);
+          alert("Error generando la rutina personalizada.");
+        } finally {
+          setLoading(false);
+        }
       };
 
       return (
-        <Card style={{ textAlign: "center", maxWidth: "400px", margin: "0 auto" }}>
-          <h3 style={{ color: COLORS.accent }}>⏱️ Temporizador de Series</h3>
-          <p style={{ color: COLORS.muted, fontSize: 13, marginBottom: 16 }}>Controla tus tiempos de ejercicio e intervalos</p>
-          
-          <div style={{ background: isRest ? COLORS.accentDim : "#1a2a1e", borderRadius: "50%", width: 180, height: 180, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", margin: "0 auto 20px", border: `4px solid ${isRest ? COLORS.gold : COLORS.accent}` }}>
-            <span style={{ fontSize: 12, color: COLORS.muted, fontWeight: "bold" }}>{isRest ? "DESCANSO" : "EJERCICIO"}</span>
-            <span style={{ fontSize: 42, fontWeight: "900", margin: "4px 0" }}>{formatTime(seconds)}</span>
-            <span style={{ fontSize: 12, color: COLORS.text }}>Ronda #{round}</span>
-          </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+          <Card glow>
+            <h3 style={{ color: COLORS.accent, marginBottom: 14, fontSize: 16 }}>🏋️ Configurar Plan</h3>
+            
+            <div style={{ marginBottom: 12 }}>
+              <label style={{ fontSize: 12, color: COLORS.muted, display: 'block', marginBottom: 4 }}>Características Físicas / Historial</label>
+              <textarea value={config.fisicas} onChange={e => setConfig({ ...config, fisicas: e.target.value })}
+                style={{ width: '100%', padding: 10, background: '#1a2a1e', border: '1px solid #2a3e2e', borderRadius: 8, color: '#e8f5ec', height: 60, fontSize: 13, resize: 'none' }} />
+            </div>
 
-          <div style={{ display: "flex", gap: 10 }}>
-            <Btn onClick={toggle}>{isActive ? "⏸️ Pausar" : "▶️ Iniciar Serie"}</Btn>
-            <Btn onClick={reset} variant="ghost">🔄 Reiniciar</Btn>
+            <div style={{ marginBottom: 12 }}>
+              <label style={{ fontSize: 12, color: COLORS.muted, display: 'block', marginBottom: 4 }}>Disponibilidad Semanal</label>
+              <input type="text" value={config.tiempo} onChange={e => setConfig({ ...config, tiempo: e.target.value })}
+                style={{ width: '100%', padding: 10, background: '#1a2a1e', border: '1px solid #2a3e2e', borderRadius: 8, color: '#e8f5ec', fontSize: 13 }} />
+            </div>
+
+            <div style={{ marginBottom: 16 }}>
+              <label style={{ fontSize: 12, color: COLORS.muted, display: 'block', marginBottom: 4 }}>¿Dónde vas a entrenar?</label>
+              <select value={config.lugar} onChange={e => setConfig({ ...config, lugar: e.target.value })}
+                style={{ width: '100%', padding: 10, background: '#1a2a1e', border: '1px solid #2a3e2e', borderRadius: 8, color: '#e8f5ec', fontSize: 13 }}>
+                <option value="Gimnasio">🏋️ En el Gimnasio</option>
+                <option value="Casa">🏡 En Casa (Sin material / Calistenia)</option>
+              </select>
+            </div>
+
+            <Btn onClick={generarPlan} disabled={loading} style={{ width: '100%' }}>
+              {loading ? 'Generando tu Rutina Inteligente...' : '🚀 Diseñar Rutina Personalizada'}
+            </Btn>
+          </Card>
+
+          <Card>
+            <h3 style={{ color: COLORS.accent, marginBottom: 12, fontSize: 16 }}>📋 Tu Rutina Semanal</h3>
+            {!plan ? (
+              <div style={{ color: COLORS.muted, padding: '40px 10px', textAlign: 'center', fontSize: 13 }}>
+                Rellena tus parámetros de tiempo y lugar a la izquierda y presiona el botón para compilar tu plan con IA.
+              </div>
+            ) : (
+              <div style={{ maxHeight: 360, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <div style={{ fontSize: 12, color: COLORS.gold, background: '#221a0f', padding: 8, borderRadius: 6 }}>
+                  💡 {plan.progreso}
+                </div>
+                {plan.rutina.map((r, idx) => (
+                  <div key={idx} style={{ background: '#1a2a1e', padding: 10, borderRadius: 8 }}>
+                    <div style={{ display: 'flex', justifyBetween: 'space-between', justifyContent: 'space-between', fontSize: 13, borderBottom: '1px solid #2a3e2e', paddingBottom: 4, marginBottom: 6 }}>
+                      <span style={{ color: COLORS.accent, fontWeight: 'bold' }}>{r.dia}</span>
+                      <span style={{ color: COLORS.muted }}>{r.enfoque}</span>
+                    </div>
+                    <ul style={{ paddingLeft: 14, fontSize: 12, color: '#e8f5ec' }}>
+                      {r.exercises ? r.exercises.map((e, i) => <li key={i}>{e}</li>) : r.ejercicios?.map((e, i) => <li key={i}>{e}</li>)}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+          </Card>
+        </div>
+      );
+    };
+
+    // ═══════════════════════════════════════════════════════════════════════════════
+    // SECCIÓN: CONFIGURACIÓN
+    // ═══════════════════════════════════════════════════════════════════════════════
+    const SettingsSection = ({ apiKey, setApiKey }) => {
+      return (
+        <Card glow style={{ maxWidth: 500, margin: '0 auto' }}>
+          <h3 style={{ color: COLORS.accent, marginBottom: 12, fontSize: 16 }}>⚙️ Configuración del Sistema</h3>
+          <p style={{ fontSize: 12, color: COLORS.muted, marginBottom: 14 }}>
+            Para habilitar el creador de rutinas adaptadas y el escáner de fotos, necesitas enlazar tu API Key de Gemini.
+          </p>
+          <div style={{ marginBottom: 16 }}>
+            <label style={{ display: 'block', fontSize: 12, color: COLORS.muted, marginBottom: 4 }}>Gemini API Key</label>
+            <input type="password" value={apiKey} onChange={e => setApiKey(e.target.value)} placeholder="AIzaSy..."
+              style={{ width: '100%', padding: '10px 12px', background: '#1a2a1e', border: '1px solid #2a3e2e', borderRadius: 8, color: '#e8f5ec', fontSize: 14 }} />
+          </div>
+          <div style={{ fontSize: 11, color: COLORS.gold }}>
+            🔒 Tus claves e información se almacenan de manera local y nunca tocan servidores externos.
           </div>
         </Card>
       );
     };
 
     // ═══════════════════════════════════════════════════════════════════════════════
-    // SECCIÓN: RECORDATORIOS DE HÁBITOS Y AGUA
-    // ═══════════════════════════════════════════════════════════════════════════════
-    const RemindersSection = () => {
-      const [habits, setHabits] = usePersist("fc_habits", [
-        { id: "water", text: "💧 Beber 2.5 Litros de Agua", done: false },
-        { id: "train", text: "🏋️‍♂️ Completar Entrenamiento", done: false },
-        { id: "protein", text: "🍗 Llegar a la meta de Proteínas", done: false },
-        { id: "stretch", text: "🧘‍♂️ Estiramientos / Movilidad", done: false }
-      ]);
-
-      const toggleHabit = (id) => {
-        setHabits(habits.map(h => h.id === id ? { ...h, done: !h.done } : h));
-      };
-
-      return (
-        <div className="grid-two">
-          <Card>
-            <h3 style={{ color: COLORS.accent, marginBottom: 8 }}>🔔 Checklist de Hábitos Diarios</h3>
-            <p style={{ color: COLORS.muted, fontSize: 13, marginBottom: 16 }}>Marca las tareas clave a medida que las completes durante el día.</p>
-            
-            {habits.map(h => (
-              <div key={h.id} onClick={() => toggleHabit(h.id)} style={{ display: "flex", alignItems: "center", background: h.done ? "#122417" : "#1a2a1e", padding: 14, borderRadius: 8, marginBottom: 10, cursor: "pointer", border: `1px solid ${h.done ? COLORS.accent : "#2a3e2e"}` }}>
-                <div style={{ fontSize: 20, marginRight: 12 }}>{h.done ? "✅" : "🔲"}</div>
-                <div style={{ fontSize: 14, textDecoration: h.done ? "line-through" : "none", color: h.done ? COLORS.muted : COLORS.text }}>{h.text}</div>
-              </div>
-            ))}
-          </Card>
-
-          <Card>
-            <h3 style={{ color: COLORS.gold, marginBottom: 8 }}>⏰ Recordatorios del Sistema</h3>
-            <p style={{ color: COLORS.muted, fontSize: 13, marginBottom: 12 }}>La aplicación te enviará alertas internas de salud.</p>
-            <div style={{ background: "#111814", padding: 12, borderRadius: 8, borderLeft: `4px solid ${COLORS.accent}`, marginBottom: 8 }}>
-              <span style={{ fontSize: 13, fontWeight: "bold" }}>💧 Hidratación:</span>
-              <p style={{ fontSize: 12, color: COLORS.muted }}>Programado por defecto cada 2 horas en segundo plano.</p>
-            </div>
-            <div style={{ background: "#111814", padding: 12, borderRadius: 8, borderLeft: `4px solid ${COLORS.gold}` }}>
-              <span style={{ fontSize: 13, fontWeight: "bold" }}>🏋️‍♂️ Rutina de Ejercicio:</span>
-              <p style={{ fontSize: 12, color: COLORS.muted }}>Alerta de control activa a las 19:00 h todos los días.</p>
-            </div>
-          </Card>
-        </div>
-      );
-    };
-
-    // ═══════════════════════════════════════════════════════════════════════════════
-    // RENDERIZADO PRINCIPAL DE LA APP Y MENÚS
+    // COMPONENTE PRINCIPAL (ROOT)
     // ═══════════════════════════════════════════════════════════════════════════════
     const App = () => {
-      const [tab, setTab] = usePersist("fc_tab", "calories");
-      const [profile, setProfile] = usePersist("fc_profile", { nombre: "", peso: 70, altura: 175, edad: 30, sexo: "hombre", actividad: "moderado", objective: "mantener", apiKey: "" });
-
-      useEffect(() => {
-        const splash = document.getElementById("splash");
-        if (splash) splash.classList.add("hide");
-      }, []);
+      const [tab, setTab] = usePersist("fc_tab", "profile");
+      const [profile, setProfile] = usePersist("fc_profile", { nombre: "", peso: "", altura: "", edad: "", sexo: "hombre", actividad: "moderado", objetivo: "mantener" });
+      const [apiKey, setApiKey] = usePersist("fc_api_key", API_KEY_PLACEHOLDER);
 
       return (
         <div className="app-container">
           <div className="header">
-            <h2 style={{ fontSize: "20px", fontWeight: "900" }}>Fit<span style={{ color: COLORS.accent }}>Coach</span> IA</h2>
-            <div style={{ fontSize: "12px", background: COLORS.accentDim, color: COLORS.accent, padding: "4px 8px", borderRadius: 6, fontWeight: "bold" }}>PRO GRATIS</div>
+            <div className="header-title">Fit<span>Coach</span> IA</div>
+            <div style={{ fontSize: 12, color: COLORS.muted }}>Hola, {profile.nombre || 'Atleta'} 👋</div>
           </div>
 
-          <div className="content">
-            {tab === "profile" && <ProfileSection profile={profile} setProfile={setProfile}/>}
-            {tab === "calories" && <CaloriesSection profile={profile}/>}
-            {tab === "timer" && <TimerSection/>}
-            {tab === "reminders" && <RemindersSection/>}
-          </div>
+          {tab === "profile" && <ProfileSection profile={profile} setProfile={setProfile} />}
+          {tab === "calories" && <CaloriesSection profile={profile} apiKey={apiKey} />}
+          {tab === "workout" && <WorkoutSection profile={profile} apiKey={apiKey} />}
+          {tab === "settings" && <SettingsSection apiKey={apiKey} setApiKey={setApiKey} />}
 
-          <div className="nav-bar">
-            <button className={`nav-item ${tab === 'calories' ? 'active' : ''}`} onClick={() => setTab("calories")}>
-              <span className="nav-icon">🥗</span><span>Calorías</span>
+          <div className="nav-bar bottom-safe">
+            <button className={`nav-item ${tab === 'profile' ? 'active' : ''}`} onClick={() => setTab('profile')}>
+              <span className="nav-icon">👤</span>Perfil
             </button>
-            <button className={`nav-item ${tab === 'timer' ? 'active' : ''}`} onClick={() => setTab("timer")}>
-              <span className="nav-icon">⏱️</span><span>Timer</span>
+            <button className={`nav-item ${tab === 'calories' ? 'active' : ''}`} onClick={() => setTab('calories')}>
+              <span className="nav-icon">🍽️</span>Calorías
             </button>
-            <button className={`nav-item ${tab === 'reminders' ? 'active' : ''}`} onClick={() => setTab("reminders")}>
-              <span className="nav-icon">🔔</span><span>Hábitos</span>
+            <button className={`nav-item ${tab === 'workout' ? 'active' : ''}`} onClick={() => setTab('workout')}>
+              <span className="nav-icon">🏋️</span>Rutina
             </button>
-            <button className={`nav-item ${tab === 'profile' ? 'active' : ''}`} onClick={() => setTab("profile")}>
-              <span className="nav-icon">👤</span><span>Perfil</span>
+            <button className={`nav-item ${tab === 'settings' ? 'active' : ''}`} onClick={() => setTab('settings')}>
+              <span className="nav-icon">⚙️</span>Config
             </button>
           </div>
         </div>
       );
     };
 
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(<App/>);
+    const root = RoyalDOM = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
   </script>
 </body>
 </html>

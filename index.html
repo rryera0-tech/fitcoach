@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="FitCoach" />
+  <meta name="theme-color" content="#0a0f0d" />
+  <title>FitCoach IA</title>
+
+  <!-- Apple touch icon (inline SVG) -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj4KICA8cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjQwIiBmaWxsPSIjMGEwZjBkIi8+CiAgPHJlY3QgeD0iMjAiIHk9Ijg4IiB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iIzM5ZTA3YSIvPgogIDxyZWN0IHg9IjE2IiB5PSI3MiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjQ4IiByeD0iNiIgZmlsbD0iIzM5ZTA3YSIvPgogIDxyZWN0IHg9IjE1MiIgeT0iNzIiIHdpZHRoPSIyNCIgaGVpZ2h0PSI0OCIgcng9IjYiIGZpbGw9IiMzOWUwN2EiLz4KICA8cmVjdCB4PSI4IiB5PSI4MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjMyIiByeD0iNSIgZmlsbD0iIzdlZmZhYSIvPgogIDxyZWN0IHg9IjE2OCIgeT0iODAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIzMiIgcng9IjUiIGZpbGw9IiM3ZWZmYWEiLz4KPC9zdmc+" />
+
+  <!-- PWA Manifest inline -->
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22FitCoach%20IA%22%2C%22short_name%22%3A%22FitCoach%22%2C%22description%22%3A%22Tu%20entrenador%20personal%20inteligente%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230a0f0d%22%2C%22theme_color%22%3A%22%230a0f0d%22%2C%22orientation%22%3A%22portrait%22%7D" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body, #root { height: 100%; background: #0a0f0d; color: #e8f5ec; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    body { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); overflow-x: hidden; }
+    
+    /* Splash screen */
+    #splash {
+      position: fixed; inset: 0; background: #0a0f0d;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      z-index: 9999; transition: opacity 0.5s ease;
+    }
+    #splash.hide { opacity: 0; pointer-events: none; }
+    .splash-icon { font-size: 72px; margin-bottom: 20px; animation: pulse 1.5s ease-in-out infinite; }
+    .splash-title { font-size: 28px; font-weight: 900; color: #e8f5ec; }
+    .splash-title span { color: #39e07a; }
+    .splash-sub { font-size: 14px; color: #5a7a62; margin-top: 8px; }
+    .splash-bar { width: 160px; height: 3px; background: #1a2a1e; border-radius: 99px; margin-top: 40px; overflow: hidden; }
+    .splash-progress { height: 100%; background: linear-gradient(90deg, #39e07a, #7effaa); border-radius: 99px; animation: load 1s ease-in-out forwards; }
+    
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+    @keyframes load { 0%{width:0%} 100%{width:100%} }
+
+    /* Layout general */
+    .app-container { display: flex; flex-direction: column; min-height: 100vh; max-width: 600px; margin: 0 auto; background: #0a0f0d; padding-bottom: 80px; }
+    .header { padding: 20px; border-bottom: 1px solid #161e18; display: flex; justify-content: space-between; align-items: center; }
+    .content { padding: 16px; flex: 1; }
+    
+    /* Navigation */
+    .nav-bar { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 600px; background: #111814; border-top: 1px solid #1e2e22; display: flex; justify-content: space-around; padding: 10px 0 calc(10px + env(safe-area-inset-bottom)); z-index: 100; }
+    .nav-item { background: none; border: none; color: #5a7a62; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; cursor: pointer; width: 20%; }
+    .nav-item.active { color: #39e07a; }
+    .nav-icon { font-size: 20px; }
+
+    /* Grid layout para responsive de escritorio/móvil */
+    .grid-two { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 600px) { .grid-two { grid-template-columns: 1fr 1fr; } }
+
+    /* Inputs estilizados */
+    input, select, textarea { width: 100%; padding: 12px; background: #1a2a1e; border: 1px solid #2a3e2e; border-radius: 8px; color: #e8f5ec; font-size: 14px; margin-bottom: 12px; }
+    input:focus, select:focus { border-color: #39e07a; outline: none; }
+    
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <div id="splash">
+    <div class="splash-icon">💪</div>
+    <div class="splash-title">Fit<span>Coach</span> IA</div>
+    <div class="splash-sub">Tu entrenador personal inteligente</div>
+    <div class="splash-bar"><div class="splash-progress"></div></div>
+  </div>
+
+  <div id="root"></div>
+
+  <!-- CDN de React y Babel -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // Colores globales
+    const COLORS = {
+      bg: "#0a0f0d", surface: "#111814", card: "#161e18",
+      accent: "#39e07a", accentDim: "#1a4a2a", text: "#e8f5ec",
+      muted: "#5a7a62", danger: "#e05a39", gold: "#f0c040"
+    };
+
+    // Alimentos Base precargados
+    const FOODS = [
+      { name: "Pollo a la plancha", cal: 165, prot: 31, carb: 0, fat: 3.6, unit: "g", cat: "🍗 Proteína" },
+      { name: "Arroz cocido", cal: 130, prot: 2.5, carb: 28, fat: 0.3, unit: "g", cat: "🍚 Carbos" },
+      { name: "Huevo entero", cal: 155, prot: 13, carb: 1, fat: 11, unit: "g", cat: "🥚 Huevos" },
+      { name: "Aguacate", cal: 160, prot: 2, carb: 9, fat: 15, unit: "g", cat: "🥑 Grasa sana" },
+      { name: "Avena", cal: 389, prot: 17, carb: 66, fat: 7, unit: "g", cat: "🍚 Carbos" }
+    ];
+
+    // --- HOOK DE PERSISTENCIA ---
+    function usePersist(key, defaultValue) {
+      const [state, setState] = useState(() => {
+        try {
+          const saved = localStorage.getItem(key);
+          return saved !== null ? JSON.parse(saved) : defaultValue;
+        } catch { return defaultValue; }
+      });
+      useEffect(() => {
+        try { localStorage.setItem(key, JSON.stringify(state)); } catch {}
+      }, [key, state]);
+      return [state, setState];
+    }
+
+    function todayKey() { return new Date().toISOString().split("T")[0]; }
+
+    // --- COMPONENTES INTERFAZ BASE ---
+    const Card = ({ children, style = {} }) => (
+      <div style={{ background: COLORS.card, borderRadius: 16, padding: "20px", border: "1px solid #1e2e22", marginBottom: "16px", ...style }}>{children}</div>
+    );
+
+    const Btn = ({ children, onClick, variant = "primary", style = {}, disabled = false }) => {
+      const styles = {
+        primary: { background: `linear-gradient(135deg, ${COLORS.accent}, #7effaa)`, color: "#0a1a0d", fontWeight: 700 },
+        ghost: { background: "transparent", color: COLORS.accent, border: `1px solid ${COLORS.accent}44` },
+        danger: { background: COLORS.danger + "22", color: COLORS.danger, border: `1px solid ${COLORS.danger}44` }
+      };
+      return (
+        <button onClick={onClick} disabled={disabled} style={{ padding: "12px 18px", borderRadius: 10, border: "none", cursor: "pointer", fontSize: "14px", width: "100%", opacity: disabled ? 0.5 : 1, ...styles[variant], ...style }}>
+          {children}
+        </button>
+      );
+    };
+
+    const ProgressBar = ({ value, max, color = COLORS.accent, label }) => {
+      const pct = Math.min((value / max) * 100, 100);
+      return (
+        <div style={{ marginBottom: 12 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: COLORS.muted, marginBottom: 4 }}>
+            <span>{label}</span>
+            <span>{value} / {max}</span>
+          </div>
+          <div style={{ background: "#1a2a1e", borderRadius: 99, height: 8, overflow: "hidden" }}>
+            <div style={{ width: `${pct}%`, height: "100%", background: color, borderRadius: 99, transition: "width 0.4s ease" }} />
+          </div>
+        </div>
+      );
+    };
+
+    // ═══════════════════════════════════════════════════════════════════════════════
+    // SECCIÓN: PERFIL
+    // ═══════════════════════════════════════════════════════════════════════════════
+    const ProfileSection = ({ profile, setProfile }) => {
+      const [form, setForm] = useState(profile);
+      const bmr = () => {
+        if (!form.peso || !form.altura || !form.edad) return 2000;
+        const base = form.sexo === "hombre" ? 10 * form.peso + 6.25 * form.altura - 5 * form.edad + 5 : 10 * form.peso + 6.25 * form.altura - 5 * form.edad - 161;
+        const factor = { sedentario: 1.2, ligero: 1.375, moderado: 1.55, activo: 1.725 }[form.actividad] || 1.2;
+        return Math.round(base * factor);
+      };
+      const calMeta = form.objetivo === "perder" ? (bmr() - 300) : form.objetivo === "ganar" ? (bmr() + 300) : bmr();
+
+      return (
+        <div class="grid-two">
+          <Card>
+            <h3 style={{ color: COLORS.accent, marginBottom: 14 }}>👤 Tus Datos Físicos</h3>
+            <label style={{ fontSize: 12, color: COLORS.muted }}>Configurar tu Gemini API Key (Opcional - Gratis)</label>
+            <input type="text" value={form.apiKey || ""} onChange={e => setForm({...form, apiKey: e.target.value})} placeholder="AIzaSy..." />
+            
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+              <div><label style={{ fontSize: 12, color: COLORS.muted }}>Peso (kg)</label><input type="number" value={form.peso || ""} onChange={e => setForm({...form, peso: parseFloat(e.target.value)})} /></div>
+              <div><label style={{ fontSize: 12, color: COLORS.muted }}>Altura (cm)</label><input type="number" value={form.altura || ""} onChange={e => setForm({...form, altura: parseFloat(e.target.value)})} /></div>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+              <div><label style={{ fontSize: 12, color: COLORS.muted }}>Edad</label><input type="number" value={form.edad || ""} onChange={e => setForm({...form, edad: parseInt(e.target.value)})} /></div>
+              <div><label style={{ fontSize: 12, color: COLORS.muted }}>Sexo</label>
+                <select value={form.sexo || "hombre"} onChange={e => setForm({...form, sexo: e.target.value})}>
+                  <option value="hombre">Hombre</option>
+                  <option value="mujer">Mujer</option>
+                </select>
+              </div>
+            </div>
+            <label style={{ fontSize: 12, color: COLORS.muted }}>Objetivo</label>
+            <select value={form.objetivo || "mantener"} onChange={e => setForm({...form, objetivo: e.target.value})}>
+              <option value="perder">🔥 Perder Peso</option>
+              <option value="mantener">⚖️ Mantener Línea</option>
+              <option value="ganar">💪 Masa Muscular</option>
+            </select>
+            <Btn onClick={() => setProfile(form)}>Guardar Perfil</Btn>
+          </Card>
+          <Card>
+            <h3 style={{ color: COLORS.gold, marginBottom: 14 }}>📊 Diagnóstico Diario</h3>
+            <div style={{ marginBottom: 20 }}>
+              <div style={{ color: COLORS.muted, fontSize: 13 }}>Meta de Consumo Recomendada:</div>
+              <div style={{ fontSize: 32, fontWeight: 900, color: COLORS.accent }}>{calMeta} Kcal</div>
+            </div>
+            <div style={{ color: COLORS.muted, fontSize: 12 }}>
+              * Puedes obtener tu API key de Gemini totalmente gratis buscando "Google AI Studio" en tu navegador para habilitar la lectura de fotos por inteligencia artificial.
+            </div>
+          </Card>
+        </div>
+      );
+    };
+
+    // ═══════════════════════════════════════════════════════════════════════════════
+    // SECCIÓN: CALORÍAS E IA DE FOTOS
+    // ═══════════════════════════════════════════════════════════════════════════════
+    const CaloriesSection = ({ profile }) => {
+      const [logData, setLogData] = usePersist("fc_food_log", { date: todayKey(), items: [] });
+      const log = logData.date === todayKey() ? logData.items : [];
+      const setLog = (items) => setLogData({ date: todayKey(), items: typeof items === "function" ? items(log) : items });
+
+      const [search, setSearch] = useState("");
+      const [selected, setSelected] = useState(null);
+      const [grams, setGrams] = useState(100);
+      const [meal, setMeal] = useState("Desayuno");
+      const [loadingPhoto, setLoadingPhoto] = useState(false);
+      const fileInputRef = useRef(null);
+
+      // Calcular meta calórica
+      const meta = (() => {
+        if (!profile.peso || !profile.altura || !profile.edad) return 2000;
+        const base = profile.sexo === "hombre" ? 10 * profile.peso + 6.25 * profile.altura - 5 * profile.edad + 5 : 10 * profile.peso + 6.25 * profile.altura - 5 * profile.edad - 161;
+        return profile.objetivo === "perder" ? Math.round(base * 1.3) - 300 : profile.objetivo === "ganar" ? Math.round(base * 1.3) + 300 : Math.round(base * 1.3);
+      })();
+
+      const totalCal = log.reduce((sum, item) => sum + item.cal, 0);
+
+      const addFoodDirect = (foodItem) => {
+        setLog([...log, { ...foodItem, id: Date.now(), meal }]);
+        setSelected(null);
+        setSearch("");
+      };
+
+      // --- ESCÁNER DE FOTOS CON GEMINI API ---
+      const handlePhotoUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        if (!profile.apiKey) {
+          alert("Por favor introduce tu Gemini API Key en la pestaña Perfil para usar el escáner de fotos gratis.");
+          return;
+        }
+
+        setLoadingPhoto(true);
+        try {
+          // Convertir imagen a Base64
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onloadend = async () => {
+            const base64Data = reader.result.split(',')[1];
+            
+            // Llamar a la API Gratuita de Gemini Flash
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${profile.apiKey}`;
+            
+            const response = await fetch(url, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                contents: [{
+                  parts: [
+                    { text: "Analiza esta comida. Devuelve ÚNICAMENTE un objeto JSON válido con este formato exacto, sin código markdown, sin texto extra: {\"name\": \"Nombre del plato estimado\", \"cal\": 350, \"prot\": 25, \"carb\": 30, \"fat\": 10, \"cat\": \"🍛 Plato Foto\"}. Intenta ser lo más preciso posible con los ingredientes visibles." },
+                    { inlineData: { mimeType: file.type, data: base64Data } }
+                  ]
+                }]
+              })
+            });
+
+            const resData = await response.json();
+            const txt = resData.candidates[0].content.parts[0].text.trim().replace(/```json/g, "").replace(/
+```/g, "");
+            const parsedFood = JSON.parse(txt);
+
+            addFoodDirect({
+              name: parsedFood.name,
+              cal: parseInt(parsedFood.cal) || 0,
+              prot: parseFloat(parsedFood.prot) || 0,
+              carb: parseFloat(parsedFood.carb) || 0,
+              fat: parseFloat(parsedFood.fat) || 0,
+              grams: 100,
+              cat: "📸 Foto Escaneada"
+            });
+            alert(`¡Alimento identificado!: ${parsedFood.name} (${parsedFood.cal} Kcal)`);
+          };
+        } catch (err) {
+          console.error(err);
+          alert("Error procesando la imagen. Asegúrate de que la API Key de tu pestaña Perfil es correcta.");
+        } finally {
+          setLoadingPhoto(false);
+        }
+      };
+
+      return (
+        <div class="grid-two">
+          <Card>
+            <h3 style={{ color: COLORS.accent, marginBottom: 12 }}>📸 Añadir Comida por Foto</h3>
+            <p style={{ fontSize: 13, color: COLORS.muted, marginBottom: 12 }}>Toma una foto a tu plato o súbela para que la Inteligencia Artificial estime sus macros de forma inmediata.</p>
+            
+            <input type="file" accept="image/*" capture="environment" ref={fileInputRef} onChange={handlePhotoUpload} class="hidden" />
+            <Btn onClick="{()"> fileInputRef.current.click()} variant="ghost" disabled={loadingPhoto}>
+              {loadingPhoto ? "🔄 Analizando plato con IA..." : "📷 Tomar Foto / Subir Imagen"}
+            </Btn>
+
+            <div style={{ margin: "20px 0", borderTop: "1px dashed #2a3e2e" }}></div>
+
+            <h3 style={{ color: COLORS.accent, marginBottom: 12 }}>🔍 O Buscador Manual</h3>
+            <input type="text" placeholder="Buscar alimento de la lista..." value={search} onChange={e => setSearch(e.target.value)} />
+            {search && (
+              <div style={{ background: "#1a2a1e", borderRadius: 8, maxHeight: 150, overflowY: "auto", border: "1px solid #2a3e2e" }}>
+                {FOODS.filter(f => f.name.toLowerCase().includes(search.toLowerCase())).map(f => (
+                  <div key={f.name} onClick={() => { setSelected(f); setSearch(f.name); }} style={{ padding: 10, cursor: "pointer", borderBottom: "1px solid #0a0f0d" }}>
+                    {f.name} - <span style={{ color: COLORS.accent }}>{f.cal} kcal/100g</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {selected && (
+              <div style={{ marginTop: 12, background: "#111814", padding: 12, borderRadius: 8 }}>
+                <p style={{ fontWeight: "bold" }}>Ajustar gramos para {selected.name}:</p>
+                <input type="number" value={grams} onChange={e => setGrams(parseInt(e.target.value) || 100)} style={{ marginTop: 6 }} />
+                <Btn onClick="{()"> addFoodDirect({
+                  name: selected.name,
+                  cal: Math.round((selected.cal * grams) / 100),
+                  prot: Math.round((selected.prot * grams) / 100),
+                  carb: Math.round((selected.carb * grams) / 100),
+                  fat: Math.round((selected.fat * grams) / 100),
+                  grams: grams,
+                  cat: selected.cat
+                })}>Confirmar e Insertar</Btn>
+              </div>
+            )}
+          </Card>
+
+          <Card>
+            <h3 style={{ color: COLORS.accent, marginBottom: 12 }}>📋 Consumo del Día</h3>
+            <ProgressBar value="{totalCal}" max="{meta}" label="Calorías Totales Consumidas" color="{COLORS.gold}"/>
+            
+            <div style={{ marginTop: 16, maxHeight: "250px", overflowY: "auto" }}>
+              {log.length === 0 ? (
+                <p style={{ color: COLORS.muted, textAlign: "center", padding: 20 }}>No hay alimentos registrados hoy.</p>
+              ) : (
+                log.map((item, index) => (
+                  <div key={index} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid #1a2a1e", fontSize: 13 }}>
+                    <div>
+                      <span style={{ fontWeight: "bold" }}>{item.name}</span> <span style={{ color: COLORS.muted }}>({item.meal})</span>
+                    </div>
+                    <div style={{ color: COLORS.accent, fontWeight: "bold" }}>{item.cal} Kcal</div>
+                  </div>
+                ))
+              )}
+            </div>
+          </Card>
+        </div>
+      );
+    };
+
+    // ═══════════════════════════════════════════════════════════════════════════════
+    // SECCIÓN: TEMPORIZADOR DE ENTRENAMIENTO
+    // ═══════════════════════════════════════════════════════════════════════════════
+    const TimerSection = () => {
+      const [seconds, setSeconds] = useState(60);
+      const [isActive, setIsActive] = useState(false);
+      const [isRest, setIsRest] = useState(false);
+      const [round, setRound] = useState(1);
+
+      useEffect(() => {
+        let interval = null;
+        if (isActive && seconds > 0) {
+          interval = setInterval(() => setSeconds(seconds => seconds - 1), 1000);
+        } else if (isActive && seconds === 0) {
+          // Alternar entre Trabajo y Descanso de forma gratuita
+          if (!isRest) {
+            setIsRest(true);
+            setSeconds(30); // 30 segundos de descanso automático
+            alert("💪 ¡Tiempo de Serie Terminado! Momento de descansar.");
+          } else {
+            setIsRest(false);
+            setSeconds(60); // 60 segundos de trabajo de nuevo
+            setRound(r => r + 1);
+            alert("⚡ ¡Descanso Finalizado! A darle duro a la siguiente serie.");
+          }
+        }
+        return () => clearInterval(interval);
+      }, [isActive, seconds, isRest]);
+
+      const toggle = () => setIsActive(!isActive);
+      const reset = () => { setIsActive(false); setSeconds(60); setIsRest(false); setRound(1); };
+
+      const formatTime = (secs) => {
+        const m = Math.floor(secs / 60).toString().padStart(2, '0');
+        const s = (secs % 60).toString().padStart(2, '0');
+        return `${m}:${s}`;
+      };
+
+      return (
+        <Card style="{{" textAlign: "center", maxWidth: "400px", margin: "0 auto" }}>
+          <h3 style={{ color: COLORS.accent }}>⏱️ Temporizador de Series</h3>
+          <p style={{ color: COLORS.muted, fontSize: 13, marginBottom: 16 }}>Controla tus tiempos de ejercicio e intervalos</p>
+          
+          <div style={{ background: isRest ? COLORS.accentDim : "#1a2a1e", borderRadius: "50%", width: 180, height: 180, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", margin: "0 auto 20px", border: `4px solid ${isRest ? COLORS.gold : COLORS.accent}` }}>
+            <span style={{ fontSize: 12, color: COLORS.muted, fontWeight: "bold" }}>{isRest ? "DESCANSO" : "EJERCICIO"}</span>
+            <span style={{ fontSize: 42, fontWeight: "900", margin: "4px 0" }}>{formatTime(seconds)}</span>
+            <span style={{ fontSize: 12, color: COLORS.text }}>Ronda #{round}</span>
+          </div>
+
+          <div style={{ display: "flex", gap: 10 }}>
+            <Btn onClick="{toggle}">{isActive ? "⏸️ Pausar" : "▶️ Iniciar Serie"}</Btn>
+            <Btn onClick="{reset}" variant="ghost">🔄 Reiniciar</Btn>
+          </div>
+        </Card>
+      );
+    };
+
+    // ═══════════════════════════════════════════════════════════════════════════════
+    // SECCIÓN: RECORDATORIOS DE HÁBITOS Y AGUA
+    // ═══════════════════════════════════════════════════════════════════════════════
+    const RemindersSection = () => {
+      // Estado diario de hábitos persistido en localStorage
+      const [habits, setHabits] = usePersist("fc_habits", [
+        { id: "water", text: "💧 Beber 2.5 Litros de Agua", done: false },
+        { id: "train", text: "🏋️‍♂️ Completar Entrenamiento", done: false },
+        { id: "protein", text: "🍗 Llegar a la meta de Proteínas", done: false },
+        { id: "stretch", text: "🧘‍♂️ Estiramientos / Movilidad", done: false }
+      ]);
+
+      const toggleHabit = (id) => {
+        setHabits(habits.map(h => h.id === id ? { ...h, done: !h.done } : h));
+      };
+
+      return (
+        <div class="grid-two">
+          <Card>
+            <h3 style={{ color: COLORS.accent, marginBottom: 8 }}>🔔 Checklist de Hábitos Diarios</h3>
+            <p style={{ color: COLORS.muted, fontSize: 13, marginBottom: 16 }}>Marca las tareas clave a medida que las completes durante el día.</p>
+            
+            {habits.map(h => (
+              <div key={h.id} onClick={() => toggleHabit(h.id)} style={{ display: "flex", alignItems: "center", background: h.done ? "#122417" : "#1a2a1e", padding: 14, borderRadius: 8, marginBottom: 10, cursor: "pointer", border: `1px solid ${h.done ? COLORS.accent : "#2a3e2e"}` }}>
+                <div style={{ fontSize: 20, marginRight: 12 }}>{h.done ? "✅" : "🔲"}</div>
+                <div style={{ fontSize: 14, textDecoration: h.done ? "line-through" : "none", color: h.done ? COLORS.muted : COLORS.text }}>{h.text}</div>
+              </div>
+            ))}
+          </Card>
+
+          <Card>
+            <h3 style={{ color: COLORS.gold, marginBottom: 8 }}>⏰ Recordatorios del Sistema</h3>
+            <p style={{ color: COLORS.muted, fontSize: 13, marginBottom: 12 }}>La aplicación te enviará alertas internas de salud.</p>
+            <div style={{ background: "#111814", padding: 12, borderRadius: 8, borderLeft: `4px solid ${COLORS.accent}`, marginBottom: 8 }}>
+              <span style={{ fontSize: 13, fontWeight: "bold" }}>💧 Hidratación:</span>
+              <p style={{ fontSize: 12, color: COLORS.muted }}>Programado por defecto cada 2 horas en segundo plano.</p>
+            </div>
+            <div style={{ background: "#111814", padding: 12, borderRadius: 8, borderLeft: `4px solid ${COLORS.gold}` }}>
+              <span style={{ fontSize: 13, fontWeight: "bold" }}>🏋️‍♂️ Rutina de Ejercicio:</span>
+              <p style={{ fontSize: 12, color: COLORS.muted }}>Alerta de control activa a las 19:00 h todos los días.</p>
+            </div>
+          </Card>
+        </div>
+      );
+    };
+
+    // ═══════════════════════════════════════════════════════════════════════════════
+    // RENDERIZADO PRINCIPAL DE LA APP Y MENÚS
+    // ═══════════════════════════════════════════════════════════════════════════════
+    const App = () => {
+      const [tab, setTab] = usePersist("fc_tab", "calories");
+      const [profile, setProfile] = usePersist("fc_profile", { nombre: "", peso: 70, altura: 175, edad: 30, sexo: "hombre", actividad: "moderado", objetivo: "mantener", apiKey: "" });
+
+      useEffect(() => {
+        // Quitar la pantalla de carga (Splash)
+        const splash = document.getElementById("splash");
+        if (splash) splash.classList.add("hide");
+      }, []);
+
+      return (
+        <div class="app-container">
+          <div class="header">
+            <h2 style={{ fontSize: "20px", fontWeight: "900" }}>Fit<span style={{ color: COLORS.accent }}>Coach</span> IA</h2>
+            <div style={{ fontSize: "12px", background: COLORS.accentDim, color: COLORS.accent, padding: "4px 8px", borderRadius: 6, fontWeight: "bold" }}>PRO GRATIS</div>
+          </div>
+
+          <div class="content">
+            {tab === "profile" && <ProfileSection profile="{profile}" setProfile="{setProfile}"/>}
+            {tab === "calories" && <CaloriesSection profile="{profile}"/>}
+            {tab === "timer" && <TimerSection/>}
+            {tab === "reminders" && <RemindersSection/>}
+          </div>
+
+          <div class="nav-bar">
+            <button class={`nav-item ${tab === 'calories' ? 'active' : ''}`} onClick={() => setTab("calories")}>
+              <span class="nav-icon">🥗</span><span>Calorías</span>
+            </button>
+            <button class={`nav-item ${tab === 'timer' ? 'active' : ''}`} onClick={() => setTab("timer")}>
+              <span class="nav-icon">⏱️</span><span>Timer</span>
+            </button>
+            <button class={`nav-item ${tab === 'reminders' ? 'active' : ''}`} onClick={() => setTab("reminders")}>
+              <span class="nav-icon">🔔</span><span>Hábitos</span>
+            </button>
+            <button class={`nav-item ${tab === 'profile' ? 'active' : ''}`} onClick={() => setTab("profile")}>
+              <span class="nav-icon">👤</span><span>Perfil</span>
+            </button>
+          </div>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App/>);
+  </script>
+</body>
+</html>

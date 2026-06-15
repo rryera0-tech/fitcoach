@@ -1,64 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="FitCoach" />
-  <meta name="theme-color" content="#0a0f0d" />
-  <title>FitCoach IA</title>
-
-  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj4KICA8cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjQwIiBmaWxsPSIjMGEwZjBkIi8+CiAgPHJlY3QgeD0iMjAiIHk9Ijg4IiB3aWR0aD0iMTUyIiBoZWlnaHQ9IjE2IiByeD0iOCIgZmlsbD0iIzM5ZTA3YSIvPgogIDxyZWN0IHg9IjE2IiB5PSI3MiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjQ4IiByeD0iNiIgZmlsbD0iIzM5ZTA3YSIvPgogIDxyZWN0IHg9IjE1MiIgeT0iNzIiIHdpZHRoPSIyNCIgaGVpZ2h0PSI0OCIgcng9IjYiIGZpbGw9IiMzOWUwN2EiLz4KICA8cmVjdCB4PSI4IiB5PSI4MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjMyIiByeD0iNSIgZmlsbD0iIzdlZmZhYSIvPgogIDxyZWN0IHg9IjE2OCIgeT0iODAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIzMiIgcng9IjUiIGZpbGw9IiM3ZWZmYWEiLz4KPC9zdmc+" />
-
-  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22FitCoach%20IA%22%2C%22short_name%22%3A%22FitCoach%22%2C%22description%22%3A%22Tu%20entrenador%20personal%20inteligente%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230a0f0d%22%2C%22theme_color%22%3A%22%230a0f0d%22%2C%22orientation%22%3A%22portrait%22%7D" />
-
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html, body, #root { height: 100%; background: #0a0f0d; }
-    body { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
-    #splash {
-      position: fixed; inset: 0; background: #0a0f0d;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      z-index: 9999; transition: opacity 0.5s ease;
-    }
-    #splash.hide { opacity: 0; pointer-events: none; }
-    .splash-icon { font-size: 72px; margin-bottom: 20px; animation: pulse 1.5s ease-in-out infinite; }
-    .splash-title { font-size: 28px; font-weight: 900; color: #e8f5ec; font-family: -apple-system, sans-serif; }
-    .splash-title span { color: #39e07a; }
-    .splash-sub { font-size: 14px; color: #5a7a62; margin-top: 8px; font-family: -apple-system, sans-serif; }
-    .splash-bar { width: 160px; height: 3px; background: #1a2a1e; border-radius: 99px; margin-top: 40px; overflow: hidden; }
-    .splash-progress { height: 100%; background: linear-gradient(90deg, #39e07a, #7effaa); border-radius: 99px; animation: load 1.8s ease-in-out forwards; }
-    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
-    @keyframes load { 0%{width:0%} 100%{width:100%} }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #2a3e2e; border-radius: 99px; }
-    input, select, button, textarea {
-      -webkit-appearance: none; appearance: none;
-      font-family: -apple-system, 'DM Sans', sans-serif;
-    }
-    .bottom-safe { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
-  </style>
-</head>
-<body>
-  <div id="splash">
-    <div class="splash-icon">💪</div>
-    <div class="splash-title">Fit<span>Coach</span> IA</div>
-    <div class="splash-sub">Tu entrenador personal inteligente</div>
-    <div class="splash-bar"><div class="splash-progress"></div></div>
-  </div>
-
-  <div id="root"></div>
-
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-  <script type="text/babel">
-    const { useState, useRef, useEffect } = React;
-
+import { useState, useRef, useEffect } from "react";
 
 // ── Persistencia automática en localStorage ───────────────────────────────────
 function usePersist(key, defaultValue) {
@@ -376,17 +316,21 @@ const CaloriesSection = ({ profile }) => {
   const [meal, setMeal]         = useState("Desayuno");
   const [catFilter, setCatFilter] = useState("Todos");
 
-  // ── Reconocimiento de comida por foto (Gemini Vision) ──
+  // ── Reconocimiento de comida por foto (IA de visión) ──
   const [mode, setMode] = useState("buscar"); // "buscar" | "foto"
+  const [provider, setProvider] = usePersist("fc_ai_provider", null); // "gemini" | "anthropic" | null
   const [geminiKey, setGeminiKey] = usePersist("fc_gemini_key", "");
-  const [geminiKeyInput, setGeminiKeyInput] = useState("");
-  const [geminiKeyError, setGeminiKeyError] = useState("");
-  const [showGeminiKey, setShowGeminiKey] = useState(false);
+  const [anthropicKey, setAnthropicKey] = usePersist("fc_anthropic_key", "");
+  const [keyInput, setKeyInput] = useState("");
+  const [keyError, setKeyError] = useState("");
+  const [showKeyInput, setShowKeyInput] = useState(false);
   const [photoPreview, setPhotoPreview] = useState(null);
   const [photoLoading, setPhotoLoading] = useState(false);
   const [photoError, setPhotoError] = useState("");
   const [photoResults, setPhotoResults] = useState(null);
   const fileInputRef = useRef(null);
+
+  const activeKey = provider === "gemini" ? geminiKey : provider === "anthropic" ? anthropicKey : "";
 
   const meta = (() => {
     if (!profile.peso || !profile.altura || !profile.edad) return 2000;
@@ -444,15 +388,23 @@ Responde ÚNICAMENTE con un array JSON válido, sin texto adicional ni bloques d
 
 Si no hay comida visible, responde: []`;
 
-  const saveGeminiKey = () => {
-    const k = geminiKeyInput.trim();
-    if (!k.startsWith("AIza")) {
-      setGeminiKeyError("La clave debe empezar por 'AIza' · Consíguela gratis en aistudio.google.com");
-      return;
+  const saveKey = () => {
+    const k = keyInput.trim();
+    if (provider === "gemini") {
+      if (!k.startsWith("AIza")) {
+        setKeyError("La clave de Gemini debe empezar por 'AIza'");
+        return;
+      }
+      setGeminiKey(k);
+    } else if (provider === "anthropic") {
+      if (!k.startsWith("sk-ant-")) {
+        setKeyError("La clave de Anthropic debe empezar por 'sk-ant-'");
+        return;
+      }
+      setAnthropicKey(k);
     }
-    setGeminiKey(k);
-    setGeminiKeyError("");
-    setGeminiKeyInput("");
+    setKeyError("");
+    setKeyInput("");
   };
 
   // Redimensiona la imagen a máx 1024px y la convierte a base64 JPEG (más rápido y barato)
@@ -477,6 +429,50 @@ Si no hay comida visible, responde: []`;
     reader.readAsDataURL(file);
   });
 
+  // Llama a Gemini (Google) — modelo gemini-2.5-flash
+  const callGemini = async (base64) => {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: PHOTO_PROMPT }, { inline_data: { mime_type: "image/jpeg", data: base64 } }] }],
+        generationConfig: { temperature: 0.2, responseMimeType: "application/json" },
+      }),
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message || "Error de la API de Gemini");
+    let text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    return text.replace(/```json|```/g, "").trim();
+  };
+
+  // Llama a Claude (Anthropic) — modelo claude-haiku-4-5 (rápido y económico)
+  const callAnthropic = async (base64) => {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": anthropicKey,
+        "anthropic-version": "2023-06-01",
+        "anthropic-dangerous-direct-browser-access": "true",
+      },
+      body: JSON.stringify({
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 1024,
+        messages: [{
+          role: "user",
+          content: [
+            { type: "image", source: { type: "base64", media_type: "image/jpeg", data: base64 } },
+            { type: "text", text: PHOTO_PROMPT },
+          ],
+        }],
+      }),
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message || "Error de la API de Claude");
+    let text = data.content?.[0]?.text || "";
+    return text.replace(/```json|```/g, "").trim();
+  };
+
   const analyzePhoto = async (file) => {
     setPhotoError(""); setPhotoResults(null); setPhotoLoading(true);
     try {
@@ -484,19 +480,7 @@ Si no hay comida visible, responde: []`;
       setPhotoPreview(dataUrl);
       const base64 = dataUrl.split(",")[1];
 
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: PHOTO_PROMPT }, { inline_data: { mime_type: "image/jpeg", data: base64 } }] }],
-          generationConfig: { temperature: 0.2, responseMimeType: "application/json" },
-        }),
-      });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error.message || "Error de la API de Gemini");
-
-      let text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-      text = text.replace(/```json|```/g, "").trim();
+      const text = provider === "gemini" ? await callGemini(base64) : await callAnthropic(base64);
       if (!text) throw new Error("La IA no devolvió ningún resultado. Prueba con otra foto.");
 
       const parsed = JSON.parse(text);
@@ -520,7 +504,8 @@ Si no hay comida visible, responde: []`;
         }));
       }
     } catch (err) {
-      setPhotoError(err.message || "No se pudo analizar la foto. Revisa tu conexión y tu clave de Gemini.");
+      const providerName = provider === "gemini" ? "Gemini" : "Claude";
+      setPhotoError(err.message || `No se pudo analizar la foto. Revisa tu conexión y tu clave de ${providerName}.`);
     }
     setPhotoLoading(false);
   };
@@ -692,42 +677,99 @@ Si no hay comida visible, responde: []`;
             ⚠️ Necesita conexión a internet. No funcionará en esta vista previa de Claude — funcionará en cuanto subas la app a GitHub Pages.
           </div>
 
-          {!geminiKey ? (
+          {!provider ? (
+            // ── Paso 1: elegir proveedor ──
             <div>
               <div style={{ fontSize: 12, color: COLORS.muted, lineHeight: 1.6, marginBottom: 14 }}>
-                Usa la IA de visión de Google (Gemini), gratis y sin tarjeta. Consigue tu clave en 2 minutos:
+                Elige qué IA quieres usar para reconocer tu comida. Ambas tienen capa gratuita:
               </div>
-              {[
-                { n: "1", t: "Ve a aistudio.google.com", d: "Entra con tu cuenta de Google" },
-                { n: "2", t: '"Get API key" → "Create API key"', d: "Se genera al instante" },
-                { n: "3", t: "Copia la clave (empieza por AIza...)", d: "Pégala aquí abajo" },
-              ].map(s => (
-                <div key={s.n} style={{ display: "flex", gap: 12, marginBottom: 12, alignItems: "flex-start" }}>
-                  <div style={{ width: 24, height: 24, borderRadius: "50%", background: COLORS.accentDim, border: `1px solid ${COLORS.accent}44`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 900, color: COLORS.accent, flexShrink: 0 }}>{s.n}</div>
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: 13, color: COLORS.text }}>{s.t}</div>
-                    <div style={{ fontSize: 11, color: COLORS.muted, marginTop: 1 }}>{s.d}</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                <button onClick={() => setProvider("anthropic")}
+                  style={{ textAlign: "left", padding: "14px 16px", borderRadius: 12, border: `2px solid ${anthropicKey ? COLORS.accent : "#2a3e2e"}`, background: anthropicKey ? COLORS.accentDim : "#1a2a1e", cursor: "pointer" }}>
+                  <div style={{ fontWeight: 700, fontSize: 14, color: COLORS.text, display: "flex", alignItems: "center", gap: 8 }}>
+                    🟣 Claude (Anthropic) {anthropicKey && <span style={{ fontSize: 10, color: COLORS.accent }}>✓ configurado</span>}
                   </div>
-                </div>
-              ))}
-              <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
-                <input
-                  type={showGeminiKey ? "text" : "password"}
-                  value={geminiKeyInput}
-                  onChange={e => { setGeminiKeyInput(e.target.value); setGeminiKeyError(""); }}
-                  onKeyDown={e => e.key === "Enter" && saveGeminiKey()}
-                  placeholder="AIza..."
-                  style={{ flex: 1, padding: "10px 12px", background: "#1a2a1e", border: `1px solid ${geminiKeyError ? COLORS.danger : "#2a3e2e"}`, borderRadius: 8, color: COLORS.text, fontSize: 13, fontFamily: "monospace" }}
-                />
-                <button onClick={() => setShowGeminiKey(v => !v)}
-                  style={{ padding: "0 12px", background: "#1a2a1e", border: "1px solid #2a3e2e", borderRadius: 8, color: COLORS.muted, cursor: "pointer", fontSize: 16 }}>
-                  {showGeminiKey ? "🙈" : "👁️"}
+                  <div style={{ fontSize: 11, color: COLORS.muted, marginTop: 4 }}>
+                    $5 gratis (~miles de fotos) · requiere verificar tu teléfono · console.anthropic.com
+                  </div>
+                </button>
+                <button onClick={() => setProvider("gemini")}
+                  style={{ textAlign: "left", padding: "14px 16px", borderRadius: 12, border: `2px solid ${geminiKey ? COLORS.accent : "#2a3e2e"}`, background: geminiKey ? COLORS.accentDim : "#1a2a1e", cursor: "pointer" }}>
+                  <div style={{ fontWeight: 700, fontSize: 14, color: COLORS.text, display: "flex", alignItems: "center", gap: 8 }}>
+                    🔵 Gemini (Google) {geminiKey && <span style={{ fontSize: 10, color: COLORS.accent }}>✓ configurado</span>}
+                  </div>
+                  <div style={{ fontSize: 11, color: COLORS.muted, marginTop: 4 }}>
+                    Gratis sin tarjeta · aistudio.google.com · ⚠️ algunas cuentas tienen un bug de Google con las claves nuevas
+                  </div>
                 </button>
               </div>
-              {geminiKeyError && <div style={{ fontSize: 11, color: COLORS.danger, marginBottom: 10 }}>⚠️ {geminiKeyError}</div>}
-              <Btn onClick={saveGeminiKey} disabled={!geminiKeyInput.trim()} style={{ width: "100%" }}>🚀 Activar reconocimiento por foto</Btn>
+            </div>
+          ) : !activeKey ? (
+            // ── Paso 2: pedir clave del proveedor elegido ──
+            <div>
+              <button onClick={() => { setProvider(null); setKeyInput(""); setKeyError(""); }}
+                style={{ background: "none", border: "none", color: COLORS.muted, fontSize: 12, cursor: "pointer", marginBottom: 12, padding: 0 }}>
+                ← Elegir otra IA
+              </button>
+
+              {provider === "anthropic" ? (
+                <>
+                  <div style={{ fontSize: 12, color: COLORS.muted, lineHeight: 1.6, marginBottom: 14 }}>
+                    Consigue tu clave de Claude (Anthropic) en 3 pasos:
+                  </div>
+                  {[
+                    { n: "1", t: "Ve a console.anthropic.com", d: "Crea cuenta y verifica tu teléfono" },
+                    { n: "2", t: '"API Keys" → "Create Key"', d: "Recibirás $5 de crédito gratis" },
+                    { n: "3", t: "Copia la clave (empieza por sk-ant-...)", d: "Pégala aquí abajo" },
+                  ].map(s => (
+                    <div key={s.n} style={{ display: "flex", gap: 12, marginBottom: 12, alignItems: "flex-start" }}>
+                      <div style={{ width: 24, height: 24, borderRadius: "50%", background: COLORS.accentDim, border: `1px solid ${COLORS.accent}44`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 900, color: COLORS.accent, flexShrink: 0 }}>{s.n}</div>
+                      <div>
+                        <div style={{ fontWeight: 700, fontSize: 13, color: COLORS.text }}>{s.t}</div>
+                        <div style={{ fontSize: 11, color: COLORS.muted, marginTop: 1 }}>{s.d}</div>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <>
+                  <div style={{ fontSize: 12, color: COLORS.muted, lineHeight: 1.6, marginBottom: 14 }}>
+                    Consigue tu clave de Gemini en 3 pasos:
+                  </div>
+                  {[
+                    { n: "1", t: "Ve a aistudio.google.com/apikey", d: "Entra con tu cuenta de Google" },
+                    { n: "2", t: '"Create API key"', d: "Se genera al instante" },
+                    { n: "3", t: "Copia la clave (empieza por AIza...)", d: "Pégala aquí abajo" },
+                  ].map(s => (
+                    <div key={s.n} style={{ display: "flex", gap: 12, marginBottom: 12, alignItems: "flex-start" }}>
+                      <div style={{ width: 24, height: 24, borderRadius: "50%", background: COLORS.accentDim, border: `1px solid ${COLORS.accent}44`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 900, color: COLORS.accent, flexShrink: 0 }}>{s.n}</div>
+                      <div>
+                        <div style={{ fontWeight: 700, fontSize: 13, color: COLORS.text }}>{s.t}</div>
+                        <div style={{ fontSize: 11, color: COLORS.muted, marginTop: 1 }}>{s.d}</div>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              )}
+
+              <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
+                <input
+                  type={showKeyInput ? "text" : "password"}
+                  value={keyInput}
+                  onChange={e => { setKeyInput(e.target.value); setKeyError(""); }}
+                  onKeyDown={e => e.key === "Enter" && saveKey()}
+                  placeholder={provider === "anthropic" ? "sk-ant-..." : "AIza..."}
+                  style={{ flex: 1, padding: "10px 12px", background: "#1a2a1e", border: `1px solid ${keyError ? COLORS.danger : "#2a3e2e"}`, borderRadius: 8, color: COLORS.text, fontSize: 13, fontFamily: "monospace" }}
+                />
+                <button onClick={() => setShowKeyInput(v => !v)}
+                  style={{ padding: "0 12px", background: "#1a2a1e", border: "1px solid #2a3e2e", borderRadius: 8, color: COLORS.muted, cursor: "pointer", fontSize: 16 }}>
+                  {showKeyInput ? "🙈" : "👁️"}
+                </button>
+              </div>
+              {keyError && <div style={{ fontSize: 11, color: COLORS.danger, marginBottom: 10 }}>⚠️ {keyError}</div>}
+              <Btn onClick={saveKey} disabled={!keyInput.trim()} style={{ width: "100%" }}>🚀 Activar reconocimiento por foto</Btn>
               <div style={{ marginTop: 10, fontSize: 11, color: COLORS.muted, lineHeight: 1.5 }}>
-                🔒 Tu clave se guarda solo en este dispositivo y habla directamente con Google. Tiene un límite gratuito diario generoso para uso personal.
+                🔒 Tu clave se guarda solo en este dispositivo y habla directamente con {provider === "anthropic" ? "Anthropic" : "Google"}.
               </div>
             </div>
           ) : (
@@ -816,10 +858,15 @@ Si no hay comida visible, responde: []`;
                 </button>
               )}
 
-              <button onClick={() => { setGeminiKey(""); setPhotoResults(null); setPhotoPreview(null); }}
-                style={{ width: "100%", marginTop: 8, padding: "6px", background: "none", border: "none", color: COLORS.muted, fontSize: 11, cursor: "pointer", opacity: 0.7 }}>
-                Cambiar clave de Gemini
-              </button>
+              <div style={{ display: "flex", justifyContent: "center", gap: 6, marginTop: 8, fontSize: 11 }}>
+                <span style={{ color: COLORS.muted, opacity: 0.7 }}>
+                  Usando {provider === "anthropic" ? "🟣 Claude" : "🔵 Gemini"}
+                </span>
+                <button onClick={() => { setProvider(null); setPhotoResults(null); setPhotoPreview(null); }}
+                  style={{ background: "none", border: "none", color: COLORS.accent, cursor: "pointer", fontSize: 11, padding: 0, opacity: 0.8 }}>
+                  · Cambiar IA o clave
+                </button>
+              </div>
 
               <style>{`@keyframes photoBounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-8px)} }`}</style>
             </div>
@@ -1788,7 +1835,7 @@ const TABS = [
   { id: "coach", label: "Coach IA", emoji: "🤖" },
 ];
 
-function App() {
+export default function App() {
   const [tab, setTab] = usePersist("fc_tab", "perfil");
   const [profile, setProfile] = usePersist("fc_profile", {
     nombre: "", peso: "", altura: "", edad: "", sexo: "hombre",
@@ -1853,46 +1900,3 @@ function App() {
     </div>
   );
 }
-
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const splash = document.getElementById('splash');
-        if (splash) {
-          splash.classList.add('hide');
-          setTimeout(() => splash.remove(), 600);
-        }
-      }, 1900);
-    });
-  </script>
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      const swCode = `
-        const CACHE = 'fitcoach-v2';
-        const URLS = [self.location.href];
-        self.addEventListener('install', e => {
-          e.waitUntil(caches.open(CACHE).then(c => c.addAll(URLS)));
-          self.skipWaiting();
-        });
-        self.addEventListener('activate', e => {
-          e.waitUntil(caches.keys().then(keys =>
-            Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-          ));
-          self.clients.claim();
-        });
-        self.addEventListener('fetch', e => {
-          e.respondWith(
-            caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match(e.request)))
-          );
-        });
-      `;
-      const blob = new Blob([swCode], { type: 'application/javascript' });
-      const swUrl = URL.createObjectURL(blob);
-      navigator.serviceWorker.register(swUrl).catch(() => {});
-    }
-  </script>
-</body>
-</html>
